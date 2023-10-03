@@ -1,12 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
@@ -45,6 +47,12 @@ class User extends Authenticatable
 
     public function roles():BelongsTo
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class,'role_id','id');
     }
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class,['employee_id','id'],['customer_id','id']);
+    }
+
 }
+

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +11,7 @@ class Role extends Model
     public $timestamps= false;
 
     use HasFactory;
-    public function users()
+    public function users(): HasMany
     {
         return $this->hasMany('App\User','roles_id','id');
     }

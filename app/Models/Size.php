@@ -1,18 +1,19 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Size extends Model
 {
-    protected $table = 'sizes';
     public $timestamps= false;
 
     use HasFactory;
-    public function users()
+    public function productDetailSizes(): HasMany 
     {
-    
+        return $this->hasMany(ProductDetail::class,'size_id','id');
     }
+    
 }
