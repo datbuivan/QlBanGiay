@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RoleSeeder extends Seeder
+class RolesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +17,8 @@ class RoleSeeder extends Seeder
         //
         \DB::table("roles")->insert([
             ["name"=>"administractor"],
-            ["name"=>"edit"]
+            ["name"=>"edit"],
+            ["name"=>"customer"]
         ]);
     }
 }

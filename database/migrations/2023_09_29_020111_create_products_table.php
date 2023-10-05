@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('product_statucs');
             $table->string('hot_status');
             $table->string('best_seller_status');
+            $table->foreignId('type_product_id')->references('id')->on('type_products');
             $table->timestamps();
         });
     }

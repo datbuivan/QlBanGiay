@@ -15,7 +15,7 @@ class SizesSeeder extends Seeder
     public function run()
     {
         //
-        \DB::table("roles")->insert([
+        \DB::table("sizes")->insert([
             ["name"=>"36"],
             ["name"=>"37"],
             ["name"=>"38"],

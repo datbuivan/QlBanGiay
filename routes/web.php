@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/getuser', function () {
-    $result= App\User::all()->toArray();
+    $result= App\Models\User::all()->toArray();
     echo '<pre>';
     print_r($result);
 });
