@@ -17,6 +17,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->integer('rate');
             $table->string('commmet');
+            $table->foreignId('product_id')->references('id')->on('products');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

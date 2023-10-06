@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
 return new class extends Migration
 {
     /**
@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('genders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('product_statucs');
-            $table->string('hot_status');
-            $table->string('best_seller_status');
-            $table->foreignId('type_product_id')->references('id')->on('type_products');
-            $table->foreignId('gender_id')->references('id')->on('genders');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('genders');
     }
 };

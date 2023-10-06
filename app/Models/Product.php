@@ -26,4 +26,13 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class,'product_id','id');
     }
+    public function reviews():HasMany
+    {
+        return $this->hasMany(Review::class,'product_id','id');
+    }
+    public function gender():BelongsTo
+    {
+        return $this->belongsTo(Gender::class,'gender_id','id');
+    }
+
 }

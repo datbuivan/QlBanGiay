@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             RolesSeeder::class,
             UsersSeeder::class,
             SizesSeeder::class,
-            ColorsSeeder::class
+            ColorsSeeder::class,
+            GendersSeeder::class
 
         ]);
     }
