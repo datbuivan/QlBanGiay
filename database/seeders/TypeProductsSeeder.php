@@ -15,7 +15,13 @@ class TypeProductsSeeder extends Seeder
     public function run()
     {
         \DB::table("type_products")->insert([
-        
+            ["name"=>"Running"],
+            ["name"=>"Golf"],
+            ["name"=>"Football"],
+            ["name"=>"Basketball"],
+            ["name"=>"Jordan"],
+            ["name"=>"Walking"],
+            ["name"=>"Athlectic"]
         ]);
     }
 }

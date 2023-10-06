@@ -24,10 +24,21 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolesSeeder::class,
             UsersSeeder::class,
+            TypeProductsSeeder::class,
+            GendersSeeder::class,
             SizesSeeder::class,
             ColorsSeeder::class,
             GendersSeeder::class
-
+            // DeliversSeeder::class,
+            // ProductsSeeder::class,
+            // ProductDetailsSeeder::class,
+            // ReviewsSeeder::class,
+            // PurchasesSeeder::class,
+            // PurchaseDetailsSeeder::class,
+            // OrdersSeeder::class,
+            // OrdersDetailsSeeder::class,
+            // ProductImagesSeeder::class,
+            // DesignsSeeder::class
         ]);
     }
 }
