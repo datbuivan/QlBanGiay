@@ -11,6 +11,6 @@ class Design extends Model
     use HasFactory;
     public function typeProduct():BelongsTo
     {
-        return $this->belongsTo(TypeProduct::class,'type_product_id','id');
+        return $this->belongsTo(Product::class,'product_id','id');
     }
 }

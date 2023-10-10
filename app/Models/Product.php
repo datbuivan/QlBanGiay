@@ -34,5 +34,9 @@ class Product extends Model
     {
         return $this->belongsTo(Gender::class,'gender_id','id');
     }
+    public function design():HasMany
+    {
+        return $this->belongsTo(Design::class,'product_id','id');
+    }
 
 }

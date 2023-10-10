@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('product_statucs');
+            $table->string('product_status');
             $table->string('hot_status');
             $table->string('best_seller_status');
             $table->foreignId('type_product_id')->references('id')->on('type_products');

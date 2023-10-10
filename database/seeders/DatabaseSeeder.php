@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             GendersSeeder::class,
             SizesSeeder::class,
             ColorsSeeder::class,
-            GendersSeeder::class
+            //DesignsSeeder::class
             // DeliversSeeder::class,
             // ProductsSeeder::class,
             // ProductDetailsSeeder::class,

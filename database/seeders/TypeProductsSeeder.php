@@ -21,7 +21,8 @@ class TypeProductsSeeder extends Seeder
             ["name"=>"Basketball"],
             ["name"=>"Jordan"],
             ["name"=>"Walking"],
-            ["name"=>"Athlectic"]
+            ["name"=>"Athlectic"],
+            ["name"=>"Lifestyle"]
         ]);
     }
 }

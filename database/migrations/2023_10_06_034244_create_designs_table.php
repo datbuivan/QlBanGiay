@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('designs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->foreignId('type_product_id')->references('id')->on('type_products');
+            $table->foreignId('product_id')->references('id')->on('products');
             $table->timestamps();
         });
     }
