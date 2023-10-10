@@ -16,12 +16,12 @@ class DesignsSeeder extends Seeder
     {
         //
         \DB::table("designs")->insert([
-            ["name"=>"Low Top","product_id"=>5],
-            ["name"=>"Mid Top","product_id"=>5],
-            ["name"=>"High Top","product_id"=>5],
-            ["name"=>"Road","product_id"=>1],
-            ["name"=>"Trail","product_id"=>1],
-            ["name"=>"Track","product_id"=>1],
+            ["name"=>"Low Top"],
+            ["name"=>"Mid Top"],
+            ["name"=>"High Top"],
+            ["name"=>"Road"],
+            ["name"=>"Trail"],
+            ["name"=>"Track"]
 
             
         ]);

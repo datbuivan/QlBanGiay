@@ -14,6 +14,14 @@ class ReviewsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \DB::table("reviews")->insert([
+            [
+                "rate"=>5,
+                "product_id"=>1,
+                "userid"=>2,
+                "comment"=>"Sản phẩm tuyệt vời"
+            ],
+            
+        ]);
     }
 }
