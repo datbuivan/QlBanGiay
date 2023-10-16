@@ -18,7 +18,8 @@ class RolesSeeder extends Seeder
         \DB::table("roles")->insert([
             ["name"=>"administractor"],
             ["name"=>"edit"],
-            ["name"=>"customer"]
+            ["name"=>"customer"],
+            ["name"=>"staff"]
         ]);
     }
 }
