@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('product_status');
-            $table->string('hot_status');
-            $table->string('best_seller_status');
+            $table->boolean('product_status')->nullable();
+            $table->boolean('hot_status')->nullable();
+            $table->boolean('best_seller_status')->nullable();
+            $table->string('avatar',255)->nullable();
             $table->foreignId('type_product_id')->references('id')->on('type_products');
             $table->foreignId('design_id')->nullable()->references('id')->on('designs');
             $table->foreignId('gender_id')->references('id')->on('genders');
