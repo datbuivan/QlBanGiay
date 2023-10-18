@@ -18,19 +18,19 @@ class PurchaseDetailsSeeder extends Seeder
         \DB::table("purchase_details")->insert([
             [
                 "price"=>2000000,
-                "quanlity"=>50,
+                "quantity"=>50,
                 "product_detail_id"=>1,
                 "purchase_id"=>1
             ],
             [
                 "price"=>3400000,
-                "quanlity"=>50,
+                "quantity"=>50,
                 "product_detail_id"=>2,
                 "purchase_id"=>1
             ],
             [
                 "price"=>3490000,
-                "quanlity"=>50,
+                "quantity"=>50,
                 "product_detail_id"=>3,
                 "purchase_id"=>1
             ],

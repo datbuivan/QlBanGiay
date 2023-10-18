@@ -5,13 +5,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
 
-
-
-Route::get('/', [HomeController::class, "products"]);
-Route::get('QLBanGiay/productDetail', [HomeController::class, "productDetail"]);
-Route::get('QLBanGiay/cart', [HomeController::class, "carts"]);
-
-
+Route::prefix('QLBanGiay')->name("QLBanGiay.")->group(function() {
+    Route::get('/home', [HomeController::class, "products"]);
+    Route::get('/{id}/productDetail', [HomeController::class, "productDetail"]);
+    Route::get('/cart', [HomeController::class, "carts"]);
+});
 // Route::get('QLBanGiay/productDetail', function () {
 //     return view('pages.productDetail');
 // })->name("QLBanGiay/productDetail");

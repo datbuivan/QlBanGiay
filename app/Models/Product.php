@@ -22,10 +22,6 @@ class Product extends Model
         return $this->belongsTo(TypeProduct::class, 'type_product_id', 'id');
     }
 
-    public function productImage(): HasMany
-    {
-        return $this->hasMany(ProductImage::class,'product_id','id');
-    }
     public function reviews():HasMany
     {
         return $this->hasMany(Review::class,'product_id','id');

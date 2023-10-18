@@ -47,10 +47,10 @@ class ProductImagesSeeder extends Seeder
                 ["name"=>"air-jordan-1-mid-se-shoes-X-3.png",'product_id'=>6],
                 ["name"=>"air-jordan-1-mid-se-shoes-X-4.png",'product_id'=>6],
               
-                ["name"=>"dunk-low-retro-shoes-1.png", 'product_id'=>7],
-                ["name"=>"dunk-low-retro-shoes-2.png", 'product_id'=>7],
-                ["name"=>"dunk-low-retro-shoes-3.png", 'product_id'=>7],
-                ["name"=>"dunk-low-retro-shoes-4.png", 'product_id'=>7],
+                ["name"=>"revolution-6-road-running-shoes-1.png", 'product_id'=>7],
+                ["name"=>"revolution-6-road-running-shoes-2.png", 'product_id'=>7],
+                ["name"=>"revolution-6-road-running-shoes-3.png", 'product_id'=>7],
+                ["name"=>"revolution-6-road-running-shoes-4.png", 'product_id'=>7],
              
                 ["name"=>"dunk-low-retro-shoes-X-1.png",  'product_id'=>8],
                 ["name"=>"dunk-low-retro-shoes-X-2.png",  'product_id'=>8],

@@ -75,7 +75,7 @@ class ProductsSeeder extends Seeder
             "product_status"=>true,
             "hot_status"=>true,
             "best_seller_status"=>true,
-            "avatar"=>"gdunk-low-retro-shoes.png",
+            "avatar"=>"revolution-6-road-running-shoes.png",
             "type_product_id"=>5,
             "gender_id"=>2],
 

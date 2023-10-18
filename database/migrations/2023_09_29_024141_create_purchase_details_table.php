@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('purchase_details', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('price');
-            $table->integer('quanlity');
+            $table->integer('quantity');
             $table->foreignId('product_detail_id')->references('id')->on('product_details');
             $table->foreignId('purchase_id')->references('id')->on('purchases');
             $table->timestamps();

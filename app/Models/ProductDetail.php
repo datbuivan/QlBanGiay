@@ -16,6 +16,10 @@ class ProductDetail extends Model
     {
         return $this->belongsTo(Product::class,'product_id', 'id');
     }
+    public function cart(): BelongsTo
+    {
+        return $this->belongsTo(Cart::class,'product_details_id', 'id');
+    }
     public function sizes(): BelongsTo
     {
         return $this->belongsTo(Size::class,'size_id','id');
@@ -31,6 +35,11 @@ class ProductDetail extends Model
     public function purchases(): BelongsToMany
     {
         return $this->belongsToMany(Purchases::class,'purchase_details','product_detail_id','order_id');
+    }
+
+    public function productImage(): HasMany
+    {
+        return $this->hasMany(ProductImage::class,'product_details_id','id');
     }
 
 }

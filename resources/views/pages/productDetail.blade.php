@@ -34,7 +34,7 @@
                             <div class="item-slick3"
                                 data-thumb="../../../QlBanGiay/resources/assets/images/product-detail-01.jpg">
                                 <div class="wrap-pic-w pos-relative">
-                                    <img src="../../../QlBanGiay/resources/assets/images/product-detail-01.jpg"
+                                    <img src="../../../QlBanGiay/resources/assets/image/{{$productDetail->avatar}}"
                                         alt="IMG-PRODUCT">
 
                                     <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"

@@ -59,5 +59,9 @@ class User extends Authenticatable
         return $this->hasMany(Review::class,'user_id','id');
     }
 
-}
+    public function cart():BelongsTo
+    {
+        return $this->belongsTo(Cart::class,'customer_id','id');
+    }
 
+}

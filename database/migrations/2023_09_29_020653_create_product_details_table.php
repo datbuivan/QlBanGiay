@@ -17,8 +17,9 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->double('import_price');
             $table->double('export_price');
-            $table->integer('quanlity');
+            $table->integer('quantity');
             $table->double('discount');
+            $table->string('avatar',255)->nullable();
             $table->foreignId('size_id')->references('id')->on('sizes');
             $table->foreignId('color_id')->references('id')->on('colors');
             $table->foreignId('product_id')->references('id')->on('products');
