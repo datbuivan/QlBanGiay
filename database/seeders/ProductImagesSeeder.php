@@ -66,6 +66,26 @@ class ProductImagesSeeder extends Seeder
                 ["name"=>"impact-4-basketball-shoes-X-2.png", 'product_id'=>10],
                 ["name"=>"impact-4-basketball-shoes-X-3.png", 'product_id'=>10],
                 ["name"=>"impact-4-basketball-shoes-X-4.png", 'product_id'=>10],
+
+                // ["name"=>"jordan-max-aura-4-shoes.png", 'product_id'=>11],
+                // ["name"=>"jordan-max-aura-4-shoes.png", 'product_id'=>11],
+                // ["name"=>"jordan-max-aura-4-shoes.png", 'product_id'=>11],
+                // ["name"=>"jordan-max-aura-4-shoes.png", 'product_id'=>11],
+
+                // ["name"=>"jordan-max-aura-4-shoes-X-1.png", 'product_id'=>12],
+                // ["name"=>"jordan-max-aura-4-shoes.X-2.png", 'product_id'=>12],
+                // ["name"=>"jordan-max-aura-4-shoes.X-2.png", 'product_id'=>12],
+                // ["name"=>"jordan-max-aura-4-shoes.X-2.png", 'product_id'=>12],
+
+                // ["name"=>"jordan-one-take-4-pf-shoes.png", 'product_id'=>13],
+                // ["name"=>"jordan-one-take-4-pf-shoes.png", 'product_id'=>13],
+                // ["name"=>"jordan-one-take-4-pf-shoes.png", 'product_id'=>13],
+                // ["name"=>"jordan-one-take-4-pf-shoes.png", 'product_id'=>13],
+
+                // ["name"=>"jordan-one-take-4-pf-shoes-X-1.png", 'product_id'=>14],
+                // ["name"=>"jordan-one-take-4-pf-shoes-X-2.png", 'product_id'=>14],
+                // ["name"=>"jordan-one-take-4-pf-shoes-X-2.png", 'product_id'=>14],
+                // ["name"=>"jordan-one-take-4-pf-shoes-X-2.png", 'product_id'=>14],
         ]);
     }
 }

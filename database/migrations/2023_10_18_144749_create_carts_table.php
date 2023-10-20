@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('avatar',255)->nullable();
             $table->double('export_price');
             $table->integer('quantity');
-            $table->foreignId('product_details_id')->references('id')->on('product_details');
+            $table->foreignId('product_id')->references('id')->on('products');
             $table->foreignId('customer_id')->references('id')->on('users');
+            $table->string('size');
+            $table->string('color');
             $table->timestamps();
         });
     }

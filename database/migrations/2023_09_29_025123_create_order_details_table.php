@@ -18,7 +18,7 @@ return new class extends Migration
             $table->double('price');
             $table->double('quantity');
             $table->foreignId('order_id')->references('id')->on('orders');
-            $table->foreignId('product_detail_id')->references('id')->on('product_details');
+            $table->foreignId('product_id')->references('id')->on('products');
             $table->timestamps();
         });
     }

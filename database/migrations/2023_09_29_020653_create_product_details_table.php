@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('product_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->double('import_price');
-            $table->double('export_price');
             $table->integer('quantity');
-            $table->double('discount');
-            $table->string('avatar',255)->nullable();
+            // $table->double('import_price');
+            // $table->double('export_price');
+            // $table->double('discount');
+            // $table->string('avatar',255)->nullable();
+            // $table->foreignId('color_id')->references('id')->on('colors');
             $table->foreignId('size_id')->references('id')->on('sizes');
-            $table->foreignId('color_id')->references('id')->on('colors');
             $table->foreignId('product_id')->references('id')->on('products');
             $table->timestamps();
         });

@@ -29,16 +29,16 @@ class DatabaseSeeder extends Seeder
             SizesSeeder::class,
             ColorsSeeder::class,
             DesignsSeeder::class,
-            // DeliversSeeder::class,
+            DeliversSeeder::class,
             ProductsSeeder::class,
             ProductDetailsSeeder::class,
             // ReviewsSeeder::class,
             PurchasesSeeder::class,
             // PurchaseDetailsSeeder::class,
-            // OrdersSeeder::class,
+            OrdersSeeder::class,
             // OrdersDetailsSeeder::class,
-            // ProductImagesSeeder::class,
-            // DesignsSeeder::class
+            ProductImagesSeeder::class,
+            DesignsSeeder::class
         ]);
     }
 }

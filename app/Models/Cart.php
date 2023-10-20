@@ -10,9 +10,9 @@ class Cart extends Model
     use HasFactory;
     public $timestamps = false;
 
-    public function productDetails(): HasMany
+    public function product(): HasMany
     {
-        return $this->hasMany(ProductDetails::class,'product_details_id', 'id');
+        return $this->hasMany(Product::class,'product_id', 'id');
     }
     public function users(): HasOne
     {

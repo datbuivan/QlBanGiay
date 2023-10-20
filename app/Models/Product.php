@@ -26,13 +26,38 @@ class Product extends Model
     {
         return $this->hasMany(Review::class,'product_id','id');
     }
+
     public function gender():BelongsTo
     {
         return $this->belongsTo(Gender::class,'gender_id','id');
     }
+
     public function design():BelongsTo
     {
         return $this->belongsTo(Design::class,'design_id','id');
     }
 
+    public function productImage(): HasMany
+    {
+        return $this->hasMany(ProductImage::class,'product_id','id');
+    }
+    public function colors(): BelongsTo
+    {
+        return $this->belongsTo(Color::class,'color_id', 'id');
+    }
+
+    public function order(): BelongsToMany
+    {
+        return $this->belongsToMany(Order::class,'order_details','product_detail_id','order_id');
+    }
+
+    public function cart(): BelongsTo
+    {
+        return $this->belongsTo(Cart::class,'product_id', 'id');
+    }
+
+    public function purchases(): BelongsToMany
+    {
+        return $this->belongsToMany(Purchases::class,'purchase_details','product_detail_id','order_id');
+    }
 }

@@ -19,19 +19,19 @@ class PurchaseDetailsSeeder extends Seeder
             [
                 "price"=>2000000,
                 "quantity"=>50,
-                "product_detail_id"=>1,
+                "product_id"=>1,
                 "purchase_id"=>1
             ],
             [
                 "price"=>3400000,
                 "quantity"=>50,
-                "product_detail_id"=>2,
+                "product_id"=>2,
                 "purchase_id"=>1
             ],
             [
                 "price"=>3490000,
                 "quantity"=>50,
-                "product_detail_id"=>3,
+                "product_id"=>3,
                 "purchase_id"=>1
             ],
            

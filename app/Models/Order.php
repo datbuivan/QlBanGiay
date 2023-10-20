@@ -21,8 +21,8 @@ class Order extends Model
         return $this->belongsTo(Deliver::class,'deliver_id','id');
     }
 
-    public function productDetailOrder(): BelongsToMany
+    public function productOrder(): BelongsToMany
     {
-        return $this->belongsToMany(ProductDetail::class, 'order_details','order_id','product_detail_id');
+        return $this->belongsToMany(ProductDetail::class, 'order_details','order_id','product_id');
     }
 }
