@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Size extends Model
 {
-    public $timestamps= false;
-
     use HasFactory;
+    public $timestamps = false;
     public function productDetailSizes(): HasMany 
     {
         return $this->hasMany(ProductDetail::class,'size_id','id');

@@ -14,6 +14,16 @@ class DeliversSeeder extends Seeder
      */
     public function run()
     {
-        //
+         //
+         \DB::table("delivers")->insert([
+            [
+                "name"=>"Bình thường",
+                "cost"=>30000
+            ],
+            [
+                "name"=>"Nhanh",
+                "cost"=>50000
+            ],
+        ]);
     }
 }

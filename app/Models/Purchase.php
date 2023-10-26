@@ -11,8 +11,8 @@ class Purchase extends Model
     public $timestamps = false;
     use HasFactory;
 
-    public function productDetails(): BelongsToMany
+    public function product(): BelongsToMany
     {
-        return $this->belongsToMany(Purchases::class,'purchase_details','order_id','product_detail_id');
+        return $this->belongsToMany(Purchases::class,'purchase_details','order_id','product_id');
     }
 }

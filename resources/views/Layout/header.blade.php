@@ -25,6 +25,8 @@
                         <a href="#" class="flex-c-m trans-04 p-lr-25">
                             USD
                         </a>
+
+
                     </div>
                 </div>
             </div>
@@ -41,7 +43,7 @@
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li class="active-menu">
-                                <a href="/QLBanGiay">Home</a>
+                                <a href="/QLBanGiay/home">Trang chủ</a>
                                 <ul class="sub-menu">
                                     <li><a href="index.html">Homepage 1</a></li>
                                     <li><a href="home-02.html">Homepage 2</a></li>
@@ -73,7 +75,7 @@
 
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m">
-                        <a href="cart"
+                        <a href="/QLBanGiay/cart"
                             class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
                             data-notify="2">
                             <i class="zmdi zmdi-shopping-cart"></i>
@@ -84,7 +86,19 @@
                             data-notify="0">
                             <i class="zmdi zmdi-favorite-outline"></i>
                         </a>
+                        <ul class="main-menu">
+                            <li>
+                                <a href="/QLBanGiay/home">Trang chủ</a>
+                                <ul class="sub-menu">
+                                    <li style="text-align:left"><a style="color: #555">Thông tin của tôi</a></li>
+                                    <li style="text-align:left"><a href="/QLBanGiay/directCard" style="color: #555">Đơn
+                                            đặt hàng</a></li>
+                                    <li style="text-align:left"><a style="color: #555">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
+
                 </nav>
             </div>
         </div>

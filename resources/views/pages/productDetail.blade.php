@@ -6,24 +6,25 @@
 <div class="container" style="margin-top: 84px">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
         <a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
-            Home
+            Trang chủ
             <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
 
         <a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
-            Men
+            Chi tiết sản phẩm
             <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
 
         <span class="stext-109 cl4">
-            Lightweight Jacket
+            {{$productDetails->name}}
         </span>
     </div>
 </div>
 
 <section class="sec-product-detail bg0 p-t-65 p-b-60">
     <div class="container">
-        <div class="row">
+        <form class="row" method="POST" action="{{ url('/QLBanGiay/addCart') }}" enctype="multipart/form-data">
+            @csrf
             <div class="col-md-6 col-lg-7 p-b-30">
                 <div class="p-l-25 p-r-30 p-lr-0-lg">
                     <div class="wrap-slick3 flex-sb flex-w">
@@ -31,57 +32,34 @@
                         <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
                         <div class="slick3 gallery-lb">
+                            @foreach($productDetails->productImages as $productImage)
                             <div class="item-slick3"
-                                data-thumb="../../../QlBanGiay/resources/assets/images/product-detail-01.jpg">
+                                data-thumb="../../../QlBanGiay/resources/assets/image/{{$productImage->name}}">
                                 <div class="wrap-pic-w pos-relative">
-                                    <img src="../../../QlBanGiay/resources/assets/image/{{$productDetail->avatar}}"
+                                    <img src="../../../QlBanGiay/resources/assets/image/{{$productImage->name}}"
                                         alt="IMG-PRODUCT">
 
                                     <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                        href="images/product-detail-01.jpg">
+                                        href="image/{{$productImage->name}}">
                                         <i class="fa fa-expand"></i>
                                     </a>
                                 </div>
                             </div>
-
-                            <div class="item-slick3"
-                                data-thumb="../../../QlBanGiay/resources/assets/images/product-detail-02.jpg">
-                                <div class="wrap-pic-w pos-relative">
-                                    <img src="../../../QlBanGiay/resources/assets/images/product-detail-02.jpg"
-                                        alt="IMG-PRODUCT">
-
-                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                        href="images/product-detail-02.jpg">
-                                        <i class="fa fa-expand"></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="item-slick3"
-                                data-thumb="../../../QlBanGiay/resources/assets/images/product-detail-03.jpg">
-                                <div class="wrap-pic-w pos-relative">
-                                    <img src="../../../QlBanGiay/resources/assets/images/product-detail-03.jpg"
-                                        alt="IMG-PRODUCT">
-
-                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                        href="images/product-detail-03.jpg">
-                                        <i class="fa fa-expand"></i>
-                                    </a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
 
+
             <div class="col-md-6 col-lg-5 p-b-30">
                 <div class="p-r-50 p-t-5 p-lr-0-lg">
                     <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                        Lightweight Jacket
+                        {{$productDetails->name}}
                     </h4>
 
                     <span class="mtext-106 cl2">
-                        $58.79
+                        {{$productDetails->export_price -($productDetails->export_price*$productDetails->discount)}}
                     </span>
 
                     <p class="stext-102 cl3 p-t-23">
@@ -91,43 +69,24 @@
 
                     <!--  -->
                     <div class="p-t-33">
-                        <div class="flex-w flex-r-m p-b-10">
-                            <div class="size-203 flex-c-m respon6">
-                                Size
-                            </div>
-
-                            <div class="size-204 respon6-next">
-                                <div class="rs1-select2 bor8 bg0">
-                                    <select class="js-select2" name="time">
-                                        <option>Choose an option</option>
-                                        <option>Size S</option>
-                                        <option>Size M</option>
-                                        <option>Size L</option>
-                                        <option>Size XL</option>
-                                    </select>
-                                    <div class="dropDownSelect2"></div>
-                                </div>
-                            </div>
+                        <div class="size-203 flex-c-m respon6">
+                            Chọn size
                         </div>
 
-                        <div class="flex-w flex-r-m p-b-10">
-                            <div class="size-203 flex-c-m respon6">
-                                Color
+                        <div class="size">
+                            @foreach($productSizes as $productSize)
+                            <div class="size1 ">
+                                <input style="display: none" class="size1-input" id="size-{{$productSize->nameSize}}"
+                                    value="{{$productSize->nameSize}}" type="radio" name="size"></input>
+                                <label class="size1-label"
+                                    for="size-{{$productSize->nameSize}}">{{$productSize->nameSize}}</label>
                             </div>
-
-                            <div class="size-204 respon6-next">
-                                <div class="rs1-select2 bor8 bg0">
-                                    <select class="js-select2" name="time">
-                                        <option>Choose an option</option>
-                                        <option>Red</option>
-                                        <option>Blue</option>
-                                        <option>White</option>
-                                        <option>Grey</option>
-                                    </select>
-                                    <div class="dropDownSelect2"></div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
+
+                        @error('size')
+                        <div class="alert alert-danger">Vui lòng chọn kích thước</div>
+                        @enderror
 
                         <div class="flex-w flex-r-m p-b-10">
                             <div class="size-204 flex-w flex-m respon6-next">
@@ -136,18 +95,25 @@
                                         <i class="fs-16 zmdi zmdi-minus"></i>
                                     </div>
 
-                                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product"
-                                        value="1">
+                                    <input class="mtext-104 cl3 txt-center num-product" name="quantity" id="quantity"
+                                        type="number" value="1">
 
                                     <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                         <i class="fs-16 zmdi zmdi-plus"></i>
                                     </div>
                                 </div>
 
-                                <button
-                                    class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                    Add to cart
-                                </button>
+
+                                <input type="hidden" value="{{ $productDetails->id }}" name="product_id">
+                                <input type="hidden" value="{{ $productDetails->name }}" name="nameProduct">
+                                <input type="hidden" value="{{ $productDetails->avatar }}" name="avatar">
+                                <input type="hidden"
+                                    value="{{$productDetails->export_price -($productDetails->export_price*$productDetails->discount)}}"
+                                    name="export_price">
+                                <input type="hidden" value="{{ $productDetails->colors->name }}" name="color">
+
+                                <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">Add
+                                    To Cart</button>
                             </div>
                         </div>
                     </div>
@@ -179,8 +145,8 @@
                     </div>
                 </div>
             </div>
-        </div>
 
+        </form>
         <div class="bor10 m-t-50 p-t-43 p-b-40">
             <!-- Tab01 -->
             <div class="tab01">
@@ -345,7 +311,7 @@
                                             <div class="col-sm-6 p-b-5">
                                                 <label class="stext-102 cl3" for="name">Name</label>
                                                 <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text"
-                                                    name="name">
+                                                    name="nameProduct">
                                             </div>
 
                                             <div class="col-sm-6 p-b-5">
@@ -355,10 +321,12 @@
                                             </div>
                                         </div>
 
+
                                         <button
                                             class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
                                             Submit
                                         </button>
+
                                     </form>
                                 </div>
                             </div>

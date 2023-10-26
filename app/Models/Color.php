@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +12,6 @@ class Color extends Model
     public $timestamps = false;
     public function productDetailColors(): HasMany
     {
-        return $this->hasMany(ProductDetail::class,'color_id','id');
+        return $this->hasMany(Product::class,'color_id','id');
     }
 }

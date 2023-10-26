@@ -17,8 +17,10 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->double('price');
             $table->double('quantity');
+            $table->string('size');
+            $table->string('avatar');
             $table->foreignId('order_id')->references('id')->on('orders');
-            $table->foreignId('product_detail_id')->references('id')->on('product_details');
+            $table->foreignId('product_id')->references('id')->on('products');
             $table->timestamps();
         });
     }

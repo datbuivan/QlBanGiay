@@ -23,6 +23,67 @@
         href="../../../QlBanGiay/resources/assets/vendor/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" , href="../../../QlBanGiay/resources/assets/css/util.css" />
     <link rel="stylesheet" , href="../../../QlBanGiay/resources/assets/css/main.css" />
+    <style>
+    .size {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .size1 {
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .size1:hover {
+        border: 1px solid #000;
+    }
+
+    .size1-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        width: 120px;
+        height: 48px
+    }
+
+    .size1 input:checked~.size1-label {
+        border: 1px solid #000;
+    }
+
+    .close-td {
+        text-align: center !important;
+    }
+
+
+    .close-icon:hover {
+        color: red;
+        cursor: pointer;
+    }
+
+    .price {
+        display: flex;
+    }
+
+    .price_discount {
+        margin-right: 10px;
+        font-size: 14px;
+        text-decoration: line-through;
+        color: red;
+    }
+
+    .pointer:hover .hover {
+        color: #fff !important;
+    }
+
+    .stext-109 {
+        font-size: 16px
+    }
+    </style>
+
 </head>
 
 <body class="animsition">
