@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeltes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -11,6 +12,21 @@ class Product extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $fillable = [
+        'name',
+        'import_price',
+        'export_price',
+        'discount',
+        'avatar',
+        'object_id',
+        'product_status',
+        'hot_status',
+        'best_seller_status',
+        'color_id',
+        'type_product_id',
+        'design_id',
+        'gender_id',
+    ];
 
     public function productDetails(): HasMany
     {
