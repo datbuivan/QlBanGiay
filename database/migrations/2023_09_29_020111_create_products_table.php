@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('avatar',255)->nullable();
             $table->string('object_id')->nullable();
             $table->boolean('product_status')->nullable();
+            $table->integer('reviews')->nullable();
+            $table->double('total_reviews')->nullable();;
             $table->boolean('hot_status')->nullable();
             $table->boolean('best_seller_status')->nullable();
             $table->foreignId('color_id')->references('id')->on('colors');

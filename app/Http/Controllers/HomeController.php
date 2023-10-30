@@ -8,10 +8,13 @@ use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\Cart;
 use App\Models\TypeProduct;
+use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Models\Deliver;
+use App\Models\Review;
 
 class HomeController extends Controller
 {
-    //
     public function products(){
         $getProductTypes = TypeProduct::all();
         $getAllProduct = Product::with([
@@ -39,32 +42,88 @@ class HomeController extends Controller
     }
 
     public function productDetail($id){
-        // $productDetails = Product::with([
-        //     'productDetails' => function ($query) use ($id){
-        //         $query->where('product_id', '=', $id);
-        //     },
-        //     "typeProduct"
-        // ])->find($id);
-
-        $productDetails = Product::with([
-            'colors',
-            'productImages',
-            'productDetails'
-        ])->find($id);
-
-
-        $productSizes = Product::select( 'products.name',"product_details.*", 'sizes.name as nameSize',)
-            ->leftJoin('product_details', 'products.id', '=', 'product_details.product_id')
-            ->leftJoin('sizes', 'sizes.id', '=', 'product_details.size_id')
-            ->where('product_details.product_id', '=', $id)
-            ->orderBy('nameSize', 'asc')
-            ->get();
-           
-        return view('pages.productDetail')
-        ->with('productSizes', $productSizes)
-        ->with('productDetails', $productDetails);
+            $productDetails = Product::with([
+                'colors',
+                'productImages',
+                'productDetails'
+            ])->find($id);
+            if($productDetails){
+                $similarProducts = Product::where('type_product_id', $productDetails->type_product_id)->get();
+                
+                $productSizes = Product::select( 'products.name',"product_details.*", 'sizes.name as nameSize',)
+                ->leftJoin('product_details', 'products.id', '=', 'product_details.product_id')
+                ->leftJoin('sizes', 'sizes.id', '=', 'product_details.size_id')
+                ->where('product_details.product_id', '=', $id)
+                ->orderBy('nameSize', 'asc')
+                ->get();
+            
+                $listReviews = Product::with([
+                    'reviews.user' => function ($query) {
+                        $query->select('id', 'name', );
+                }])->select('id' ,'name')->find($id);
+        
+                return view('pages.productDetail')
+                ->with('listReviews', $listReviews)
+                ->with('similarProducts', $similarProducts)
+                ->with('productSizes', $productSizes)
+                ->with('productDetails', $productDetails);
+            }
+            else{
+                abort(404);
+            }
     }
 
+    public function reviews($id){
+            // $listReviews = OrderDetail::with([
+            //     'product'=> function ($query) {
+            //         $query->select('id', 'name', );
+            //     }
+            // ])->find($id);
+            $listReviews = OrderDetail::with([
+                'product.reviews'
+            ])->find($id);
+            
+            echo $listReviews;
+            return view('pages.review')
+            ->with('listReviews', $listReviews);
+    }
+
+    public function ratingStar(Request $request){
+        $checkReview = Review::where('user_id', 2)
+        ->where('product_id', $request->productId)
+        ->first();
+
+        if(!$checkReview){
+            $reviews = Review::create([
+                'rate' => $request->ratingstar,
+                'product_id' => $request->productId,
+                'comment'=> $request->comment,
+                'user_id' => 2
+            ]);
+        }
+        else{
+            $reviews = Review::where('user_id', 1)
+            ->where('product_id', $request->productId)
+            ->update([
+                'rate' => $request->ratingstar,
+                'product_id' => $request->productId,
+                'comment'=> $request->comment,
+            ]);
+        }
+        
+        if ($reviews){
+            $reviewCount = Review::where("product_id", $request->productId)->count();
+            $totalRatingStar = Review::where("product_id", $request->productId)->sum('rate');
+            $TBRatingStar = $totalRatingStar/$reviewCount;
+
+            Product::where('id', $request->productId)->update([
+                'reviews' => $reviewCount,
+                'total_reviews' => $TBRatingStar,
+            ]);
+            return redirect()->route('QLBanGiay.directCard')->with('success', 'Đánh giá thành công');
+        }
+
+    }
   
 
 }

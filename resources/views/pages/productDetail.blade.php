@@ -21,6 +21,7 @@
     </div>
 </div>
 
+@if($productDetails)
 <section class="sec-product-detail bg0 p-t-65 p-b-60">
     <div class="container">
         <form class="row" method="POST" action="{{ url('/QLBanGiay/addCart') }}" enctype="multipart/form-data">
@@ -57,14 +58,30 @@
                     <h4 class="mtext-105 cl2 js-name-detail p-b-14">
                         {{$productDetails->name}}
                     </h4>
-
+                    <?php
+                        $starsTotal = 5;
+                        $starPercentage = ($productDetails->total_reviews / $starsTotal) * 100;
+                        $starPercentageRounded = round($starPercentage,0).'%';
+                        $starMedium = round($productDetails->total_reviews, 1);
+                    ?>
+                    <span style="color: #f8ce0b; text-decoration: underline; margin-right: 4px;">
+                        {{$starMedium}}
+                    </span>
+                    <div class="stars-outer">
+                        <div style=' width: {{$starPercentageRounded}}' class="stars-inner"></div>
+                    </div>
+                    <span style="padding: 0 15px; border-left: 2px solid #ccc;">{{$productDetails->reviews}} Đánh
+                        giá</span>
+                    <br />
                     <span class="mtext-106 cl2">
-                        {{$productDetails->export_price -($productDetails->export_price*$productDetails->discount)}}
+                        {{number_format($productDetails->export_price -($productDetails->export_price*$productDetails->discount), 0, ',', '.') . ' đ'}}
                     </span>
 
                     <p class="stext-102 cl3 p-t-23">
-                        Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare
-                        feugiat.
+                        Giày thể thao Dope được coi là sự tự chăm sóc bản thân. Và với màu sắc lấy cảm hứng từ các lối
+                        đi của cửa hàng bán đồ làm đẹp tại địa phương của bạn (cộng với lớp đệm Nike Air giống như đám
+                        mây dưới chân), những chiếc J's cỡ trung này sẽ khiến bạn có cảm giác như không có gì khác ngoài
+                        phần giữa. Hãy tiếp tục - hãy đối xử với chính mình.
                     </p>
 
                     <!--  -->
@@ -153,15 +170,12 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item p-b-10">
-                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
+                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Miêu tả sản phẩm</a>
                     </li>
 
                     <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional information</a>
-                    </li>
-
-                    <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
+                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Đánh giá
+                            ({{$listReviews->reviews->count()}})</a>
                     </li>
                 </ul>
 
@@ -184,70 +198,13 @@
                     </div>
 
                     <!-- - -->
-                    <div class="tab-pane fade" id="information" role="tabpanel">
-                        <div class="row">
-                            <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-                                <ul class="p-lr-28 p-lr-15-sm">
-                                    <li class="flex-w flex-t p-b-7">
-                                        <span class="stext-102 cl3 size-205">
-                                            Weight
-                                        </span>
-
-                                        <span class="stext-102 cl6 size-206">
-                                            0.79 kg
-                                        </span>
-                                    </li>
-
-                                    <li class="flex-w flex-t p-b-7">
-                                        <span class="stext-102 cl3 size-205">
-                                            Dimensions
-                                        </span>
-
-                                        <span class="stext-102 cl6 size-206">
-                                            110 x 33 x 100 cm
-                                        </span>
-                                    </li>
-
-                                    <li class="flex-w flex-t p-b-7">
-                                        <span class="stext-102 cl3 size-205">
-                                            Materials
-                                        </span>
-
-                                        <span class="stext-102 cl6 size-206">
-                                            60% cotton
-                                        </span>
-                                    </li>
-
-                                    <li class="flex-w flex-t p-b-7">
-                                        <span class="stext-102 cl3 size-205">
-                                            Color
-                                        </span>
-
-                                        <span class="stext-102 cl6 size-206">
-                                            Black, Blue, Grey, Green, Red, White
-                                        </span>
-                                    </li>
-
-                                    <li class="flex-w flex-t p-b-7">
-                                        <span class="stext-102 cl3 size-205">
-                                            Size
-                                        </span>
-
-                                        <span class="stext-102 cl6 size-206">
-                                            XL, L, M, S
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- - -->
                     <div class="tab-pane fade" id="reviews" role="tabpanel">
                         <div class="row">
                             <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
                                 <div class="p-b-30 m-lr-15-sm">
                                     <!-- Review -->
+                                    @if($listReviews->reviews->count() > 0)
+                                    @foreach($listReviews->reviews as $listReview)
                                     <div class="flex-w flex-t p-b-68">
                                         <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
                                             <img src="../../../QlBanGiay/resources/assets/images/avatar-01.jpg"
@@ -257,77 +214,25 @@
                                         <div class="size-207">
                                             <div class="flex-w flex-sb-m p-b-17">
                                                 <span class="mtext-107 cl2 p-r-20">
-                                                    Ariana Grande
+                                                    {{$listReview->user->name}}
+                                                    <p>{{$listReview->created_at->format('d-m-Y')}}</p>
                                                 </span>
-
-                                                <span class="fs-18 cl11">
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star-half"></i>
-                                                </span>
+                                                <div class="stars-outer">
+                                                    <div class="star-{{$listReview->rate}}  active-star"></div>
+                                                </div>
                                             </div>
 
-                                            <p class="stext-102 cl6">
-                                                Quod autem in homine praestantissimum atque optimum est, id deseruit.
-                                                Apud ceteros autem philosophos
+                                            <p style="font-size: 16px;" class="stext-102 cl6">
+                                                {{$listReview->comment}}
                                             </p>
                                         </div>
                                     </div>
-
-                                    <!-- Add review -->
-                                    <form class="w-full">
-                                        <h5 class="mtext-108 cl2 p-b-7">
-                                            Add a review
-                                        </h5>
-
-                                        <p class="stext-102 cl6">
-                                            Your email address will not be published. Required fields are marked *
-                                        </p>
-
-                                        <div class="flex-w flex-m p-t-50 p-b-23">
-                                            <span class="stext-102 cl3 m-r-16">
-                                                Your Rating
-                                            </span>
-
-                                            <span class="wrap-rating fs-18 cl11 pointer">
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <input class="dis-none" type="number" name="rating">
-                                            </span>
-                                        </div>
-
-                                        <div class="row p-b-25">
-                                            <div class="col-12 p-b-5">
-                                                <label class="stext-102 cl3" for="review">Your review</label>
-                                                <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10"
-                                                    id="review" name="review"></textarea>
-                                            </div>
-
-                                            <div class="col-sm-6 p-b-5">
-                                                <label class="stext-102 cl3" for="name">Name</label>
-                                                <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text"
-                                                    name="nameProduct">
-                                            </div>
-
-                                            <div class="col-sm-6 p-b-5">
-                                                <label class="stext-102 cl3" for="email">Email</label>
-                                                <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email"
-                                                    type="text" name="email">
-                                            </div>
-                                        </div>
-
-
-                                        <button
-                                            class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-                                            Submit
-                                        </button>
-
-                                    </form>
+                                    @endforeach
+                                    @else
+                                    <div style="text-align: center; font-size: 20px; color:red;">Sản phẩm chưa có đánh
+                                        giá nào
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -338,13 +243,6 @@
     </div>
 
     <div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-        <span class="stext-107 cl6 p-lr-25">
-            SKU: JAK-01
-        </span>
-
-        <span class="stext-107 cl6 p-lr-25">
-            Categories: Jacket, Men
-        </span>
     </div>
 </section>
 
@@ -352,34 +250,51 @@
     <div class="container">
         <div class="p-b-45">
             <h3 class="ltext-106 cl5 txt-center">
-                Related Products
+                Những sản phẩm tương tự
             </h3>
         </div>
 
         <!-- Slide2 -->
         <div class="wrap-slick2">
             <div class="slick2">
+                @foreach($similarProducts as $similarProduct)
+                <?php
+                $starsTotal = 5;
+                $starPercentage = ($similarProduct->total_reviews / $starsTotal) * 100;
+                $starPercentageRounded = round($starPercentage,0).'%';
+                ?>
                 <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
                     <!-- Block2 -->
                     <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="../../../QlBanGiay/resources/assets/images/product-01.jpg" alt="IMG-PRODUCT">
+                        <div style="border: 1px solid #ccc" class="block2-pic hov-img0">
+                            <img style="height: 270px"
+                                src="../../../QlBanGiay/resources/assets/image/{{$similarProduct->avatar}}"
+                                alt="IMG-PRODUCT">
 
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                Quick View
+                            <a style="border: 1px solid #ccc; font-size: 13px;"
+                                href="{{ url('/QLBanGiay/' . $similarProduct->id . '/productDetail') }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 
+                            ">
+                                Chi tiết sản phẩm
                             </a>
                         </div>
 
                         <div class="block2-txt flex-w flex-t p-t-14">
                             <div class="block2-txt-child1 flex-col-l ">
                                 <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    Esprit Ruffle Shirt
+                                    {{$similarProduct->name}}
                                 </a>
 
-                                <span class="stext-105 cl3">
-                                    $16.64
-                                </span>
+                                <div class="price">
+                                    <span class="stext-105 cl3 price_discount">
+                                        {{number_format($similarProduct->export_price , 0, ',', '.') . ' đ'}}
+                                    </span>
+                                    <span class="stext-105 cl3 price_span">
+                                        {{number_format($similarProduct->export_price-($similarProduct->export_price*$similarProduct->discount) , 0, ',', '.') . ' đ'}}
+                                    </span>
+                                </div>
+                                <div class="stars-outer">
+                                    <div style=' width: {{$starPercentageRounded}}' class="stars-inner"></div>
+                                </div>
                             </div>
 
                             <div class="block2-txt-child2 flex-r p-t-3">
@@ -395,268 +310,17 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <!-- Block2 -->
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="../../../QlBanGiay/resources/assets/images/product-02.jpg" alt="IMG-PRODUCT">
-
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                Quick View
-                            </a>
-                        </div>
-
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    Herschel supply
-                                </a>
-
-                                <span class="stext-105 cl3">
-                                    $35.31
-                                </span>
-                            </div>
-
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04"
-                                        src="../../../QlBanGiay/resources/assets/images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="../../../QlBanGiay/resources/assets/images/icons/icon-heart-02.png"
-                                        alt="ICON">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <!-- Block2 -->
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="../../../QlBanGiay/resources/assets/images/product-03.jpg" alt="IMG-PRODUCT">
-
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                Quick View
-                            </a>
-                        </div>
-
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    Only Check Trouser
-                                </a>
-
-                                <span class="stext-105 cl3">
-                                    $25.50
-                                </span>
-                            </div>
-
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04"
-                                        src="../../../QlBanGiay/resources/assets/images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="../../../QlBanGiay/resources/assets/images/icons/icon-heart-02.png"
-                                        alt="ICON">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <!-- Block2 -->
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="../../../QlBanGiay/resources/assets/images/product-04.jpg" alt="IMG-PRODUCT">
-
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                Quick View
-                            </a>
-                        </div>
-
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    Classic Trench Coat
-                                </a>
-
-                                <span class="stext-105 cl3">
-                                    $75.00
-                                </span>
-                            </div>
-
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04"
-                                        src="../../../QlBanGiay/resources/assets/images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="../../../QlBanGiay/resources/assets/images/icons/icon-heart-02.png"
-                                        alt="ICON">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <!-- Block2 -->
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="../../../QlBanGiay/resources/assets/images/product-05.jpg" alt="IMG-PRODUCT">
-
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                Quick View
-                            </a>
-                        </div>
-
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    Front Pocket Jumper
-                                </a>
-
-                                <span class="stext-105 cl3">
-                                    $34.75
-                                </span>
-                            </div>
-
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04"
-                                        src="../../../QlBanGiay/resources/assets/images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="../../../QlBanGiay/resources/assets/images/icons/icon-heart-02.png"
-                                        alt="ICON">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <!-- Block2 -->
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="../../../QlBanGiay/resources/assets/images/product-06.jpg" alt="IMG-PRODUCT">
-
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                Quick View
-                            </a>
-                        </div>
-
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    Vintage Inspired Classic
-                                </a>
-
-                                <span class="stext-105 cl3">
-                                    $93.20
-                                </span>
-                            </div>
-
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04"
-                                        src="../../../QlBanGiay/resources/assets/images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="../../../QlBanGiay/resources/assets/images/icons/icon-heart-02.png"
-                                        alt="ICON">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <!-- Block2 -->
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="../../../QlBanGiay/resources/assets/images/product-07.jpg" alt="IMG-PRODUCT">
-
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                Quick View
-                            </a>
-                        </div>
-
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    Shirt in Stretch Cotton
-                                </a>
-
-                                <span class="stext-105 cl3">
-                                    $52.66
-                                </span>
-                            </div>
-
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04"
-                                        src="../../../QlBanGiay/resources/assets/images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="../../../QlBanGiay/resources/assets/images/icons/icon-heart-02.png"
-                                        alt="ICON">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <!-- Block2 -->
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="../../../QlBanGiay/resources/assets/images/product-08.jpg" alt="IMG-PRODUCT">
-
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                Quick View
-                            </a>
-                        </div>
-
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    Pieces Metallic Printed
-                                </a>
-
-                                <span class="stext-105 cl3">
-                                    $18.96
-                                </span>
-                            </div>
-
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04"
-                                        src="../../../QlBanGiay/resources/assets/images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="../../../QlBanGiay/resources/assets/images/icons/icon-heart-02.png"
-                                        alt="ICON">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
 </section>
-
+@else
+<p style="          margin: 60px 0;
+                    text-align: center;
+                    width: 100%;
+                    font-size: 20px;
+                    color: red;
+                ">không tồn tại sản phẩm</p>
+@endif
 @endsection

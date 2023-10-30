@@ -45,7 +45,7 @@ class ProductsSeeder extends Seeder
 
             ["name"=>"Air Jordan 1 Mid SE Craft",
             "import_price"=>800000,
-            "export_price"=>160000,
+            "export_price"=>1600000,
             "discount"=>0.2,
             "color_id"=>1,
             "design_id"=>2,

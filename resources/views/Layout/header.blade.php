@@ -6,7 +6,7 @@
             <div class="top-bar">
                 <div class="content-topbar flex-sb-m h-full container">
                     <div class="left-top-bar">
-                        Free shipping for standard order over $100
+                        Miễn phí vận chuyển cho đơn hàng tiêu chuẩn trên 100 USD
                     </div>
 
                     <div class="right-top-bar flex-w h-full">
@@ -52,7 +52,7 @@
                             </li>
 
                             <li>
-                                <a href="product.html">Shop</a>
+                                <a href="product.html">Cửa hàng</a>
                             </li>
 
                             <li class="label1" data-label1="hot">
@@ -68,7 +68,7 @@
                             </li>
 
                             <li>
-                                <a href="contact.html">Contact</a>
+                                <a href="contact.html">Liên hệ</a>
                             </li>
                         </ul>
                     </div>

@@ -12,6 +12,8 @@ Route::prefix('QLBanGiay')->name("QLBanGiay.")->group(function() {
     Route::get('/home', [HomeController::class, "products"]);
     Route::get('/{id}/productDetail', [HomeController::class, "productDetail"]);
     Route::get('home/{id}', [HomeController::class, "productType"]);
+    Route::get('/review/{id}', [HomeController::class, "reviews"])->name('reviews');
+    Route::post('/ratingStar', [HomeController::class, "ratingStar"]);
     Route::get('/cart', [CartController::class, "carts"])->name('cart');
     Route::post('/addCart', [CartController::class, 'addToCart']);
     Route::delete('/{id}/deleteCart', [CartController::class, 'deleteCart']);

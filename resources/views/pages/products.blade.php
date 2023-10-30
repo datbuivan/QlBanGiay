@@ -250,6 +250,11 @@
         <div class="row isotope-grid">
 
             @foreach($products as $product)
+            <?php
+              $starsTotal = 5;
+              $starPercentage = ($product->total_reviews / $starsTotal) * 100;
+              $starPercentageRounded = round($starPercentage,0).'%';
+            ?>
             <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                 <!-- Block2 -->
                 <div class="block2">
@@ -257,9 +262,10 @@
                         <img style="height: 270px" src="../../../QlBanGiay/resources/assets/image/{{$product->avatar}}"
                             alt="IMG-PRODUCT">
 
-                        <a href="{{ url('/QLBanGiay/' . $product->id . '/productDetail') }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 
+                        <a style="border: 1px solid #ccc; font-size: 13px;"
+                            href="{{ url('/QLBanGiay/' . $product->id . '/productDetail') }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 
                             ">
-                            Quick View
+                            Chi tiết sản phẩm
                         </a>
                     </div>
 
@@ -271,11 +277,14 @@
 
                             <div class="price">
                                 <span class="stext-105 cl3 price_discount">
-                                    {{$product->export_price}}
+                                    {{number_format($product->export_price , 0, ',', '.') . ' đ'}}
                                 </span>
                                 <span class="stext-105 cl3 price_span">
-                                    {{$product->export_price-($product->export_price*$product->discount)}}
+                                    {{number_format($product->export_price-($product->export_price*$product->discount), 0, ',', '.') . ' đ'}}
                                 </span>
+                            </div>
+                            <div class="stars-outer">
+                                <div style=' width: {{$starPercentageRounded}}' class="stars-inner"></div>
                             </div>
                         </div>
 

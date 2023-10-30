@@ -93,9 +93,9 @@ class OrderController extends Controller
                         $query->select('id', 'name', );
                 }])->where('customer_id',1)->get();
 
-                echo $directCards;
                 return view('pages.directCard')
                 ->with('directCards', $directCards);
         }
+
         
 }

@@ -9,6 +9,8 @@
     <link rel="stylesheet" , href="../../../QlBanGiay/resources/assets/vendor/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" ,
         href="../../../QlBanGiay/resources/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet"
+        href="../../../QlBanGiay/resources/assets/fonts/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css">
     <link rel="stylesheet" ,
         href="../../../QlBanGiay/resources/assets/fonts/iconic/css/material-design-iconic-font.min.css" />
     <link rel="stylesheet" , href="../../../QlBanGiay/resources/assets/fonts/linearicons-v1.0.0/icon-font.min.css" />
@@ -81,6 +83,127 @@
 
     .stext-109 {
         font-size: 16px
+    }
+
+    .stars-outer {
+        position: relative;
+        display: inline-block;
+        margin: 10px 0;
+        margin-right: 15px;
+    }
+
+    .stars-inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+    }
+
+    .stars-outer::before {
+        content: '\f005 \f005 \f005 \f005 \f005';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        color: #ccc;
+    }
+
+    .stars-inner::before {
+        content: '\f005 \f005 \f005 \f005 \f005';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        color: #f8ce0b;
+    }
+
+    .star-1 {
+        border: none !important;
+        padding-left: 0 !important;
+    }
+
+    .star-1::before {
+        content: '\f005 ';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        color: #ccc;
+    }
+
+    .star-2::before {
+        content: '\f005 \f005 ';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        color: #ccc;
+    }
+
+    .star-3::before {
+        content: '\f005 \f005 \f005 ';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        color: #ccc;
+    }
+
+    .star-4::before {
+        content: '\f005 \f005 \f005 \f005 ';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        color: #ccc;
+    }
+
+    .star-5::before {
+        content: '\f005 \f005 \f005 \f005 \f005';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        color: #ccc;
+    }
+
+    .active::before {
+        font-weight: 900;
+        color: #f8ce0b;
+    }
+
+    .active-star::before {
+        font-weight: 900;
+        color: #f8ce0b;
+        position: absolute;
+        top: 0;
+    }
+
+    .star:hover::before {
+        cursor: pointer;
+        transition: all 0.3s linear;
+        font-weight: 900;
+        color: #f8ce0b;
+    }
+
+    div.stars {
+        width: 270px;
+        display: inline-block;
+    }
+
+    input.star {
+        display: none;
+    }
+
+    label.star {
+        float: right;
+        padding: 10px;
+        font-size: 30px;
+        color: #444;
+        transition: all .2s;
+    }
+
+    input.star:checked~label.star:before {
+        content: '\f005';
+        color: #FD4;
+        transition: all .25s;
+    }
+
+    label.star:before {
+        content: '\f006';
+        font-family: FontAwesome;
+    }
+
+    .active_status {
+        color: #26aa99 !important;
     }
     </style>
 

@@ -39,7 +39,7 @@
                                 <th class="column-1">Tên sản phẩm</th>
                                 <th style="text-align: center;" class="column-3">Giá bán</th>
                                 <th style="text-align: center;" class="column-3">Số lượng</th>
-                                <th class="column-5">Tổng tiền</th>
+                                <th style="text-align: center;" class="column-5">Tổng tiền</th>
                             </tr>
                             @foreach($listCarts as $listCart)
                             <tr class="table_row">
@@ -58,12 +58,15 @@
                                         {{$listCart->size}}
                                     </p>
                                 </td>
-                                <td style="text-align: center;" class="column-3">{{$listCart->export_price}}</td>
+                                <td style="text-align: center;" class="column-3">
+                                    {{number_format($listCart->export_price , 0, ',', '.') . ' đ'}}</td>
                                 <td class="column-3">
                                     <input type="number" style="text-align: center;display: inline;width: 100%;"
                                         name="listCart[{{$listCart->id}}][quantity]" value="{{$listCart->quantity}}">
                                 </td>
-                                <td class="column-5">{{$listCart->export_price*$listCart->quantity}}</td>
+                                <td style="text-align: center;" class="column-5">
+                                    {{number_format($listCart->export_price*$listCart->quantity , 0, ',', '.') . ' đ'}}
+                                </td>
                             </tr>
                             @endforeach
                         </table>
@@ -152,7 +155,7 @@
                             </div>
                             <div
                                 class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-                                Tổng tiền: {{$total}}
+                                Tổng tiền: {{number_format($total , 0, ',', '.') . ' đ'}}
                             </div>
                         </div>
                     </div>

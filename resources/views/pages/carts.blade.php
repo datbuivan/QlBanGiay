@@ -29,22 +29,23 @@
 
                 @endif
                 @if($listCarts->count() > 0)
-                <div class="  m-lr-0-xl">
+                <div class=" m-lr-0-xl">
                     <div class="wrap-table-shopping-cart">
                         <table class="table-shopping-cart">
                             <tr class="table_head">
                                 <th class="column-1">Sản phẩm</th>
                                 <th class="column-2"></th>
-                                <th class="column-3">Giá bán</th>
+                                <th style="text-align: center;" class="column-3">Giá bán</th>
                                 <th style="text-align: center;" class="column-4">Số lượng</th>
-                                <th class="column-5">Tổng tiền</th>
+                                <th style="text-align: center;" class="column-5">Tổng tiền</th>
                                 <th class="column-4"></th>
                             </tr>
                             @foreach($listCarts as $listCart)
                             <tr class="table_row">
                                 <td class="column-1">
-                                    <div class="how-itemcart1">
-                                        <img src="../../../QlBanGiay/resources/assets/image/{{$listCart->avatar}}"
+                                    <div style=" width: 70px;" class="how-itemcart1">
+                                        <img style="border: 1px solid #e6e6e6; height: 70px; width: 70px;"
+                                            src="../../../QlBanGiay/resources/assets/image/{{$listCart->avatar}}"
                                             alt="IMG">
                                     </div>
                                 </td>
@@ -58,7 +59,9 @@
                                         {{$listCart->size}}
                                     </p>
                                 </td>
-                                <td class="column-3">{{$listCart->export_price}}</td>
+                                <td style="text-align: center;" class="column-3">
+                                    {{number_format($listCart->export_price , 0, ',', '.') . ' đ'}}
+                                </td>
                                 <td class="column-4">
                                     <div class="wrap-num-product flex-w m-l-auto m-r-0">
                                         <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
@@ -73,7 +76,9 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="column-5">{{$listCart->export_price*$listCart->quantity}}</td>
+                                <td style="text-align: center;" class="column-5">
+                                    {{number_format($listCart->export_price*$listCart->quantity , 0, ',', '.') . ' đ'}}
+                                </td>
                                 <td class="column-4 close-td">
                                     <form method='post' action="{{ url('/QLBanGiay/'.$listCart->id.'/deleteCart') }}">
                                         @csrf
@@ -101,7 +106,8 @@
                         </div>
                         <div
                             class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-                            Tổng tiền: {{$total}} </div>
+                            Tổng tiền: {{number_format($total , 0, ',', '.') . ' đ'}}
+                        </div>
                     </div>
                 </div>
                 @else
