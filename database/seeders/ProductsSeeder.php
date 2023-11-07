@@ -22,6 +22,7 @@ class ProductsSeeder extends Seeder
             "discount"=>0.3,
             "color_id"=>1,
             "avatar"=>"air-force-1-07-shoes.png",
+            'description'=>"Hãy dành thời gian để tỏa sáng ở AJ1 Mid. Cặp đôi này mang đến vẻ đẹp lộng lẫy với logo Swoosh sáng bóng và phiên bản dubraes đặc biệt. Trang trí ở cổ giày ở giữa, logo Wings mang tính biểu tượng được trang trí bằng kim loại, nâng tầm phong cách giày thể thao của bạn với ánh vàng lấp lánh.",
             "product_status"=>true,
             "hot_status"=>true,
             "best_seller_status"=>true,
@@ -35,6 +36,7 @@ class ProductsSeeder extends Seeder
             "discount"=>0.3,
             "color_id"=>5,
             "avatar"=>"air-force-1-07-shoes-X.png",
+            'description'=>"Hãy dành thời gian để tỏa sáng ở AJ1 Mid. Cặp đôi này mang đến vẻ đẹp lộng lẫy với logo Swoosh sáng bóng và phiên bản dubraes đặc biệt. Trang trí ở cổ giày ở giữa, logo Wings mang tính biểu tượng được trang trí bằng kim loại, nâng tầm phong cách giày thể thao của bạn với ánh vàng lấp lánh.",
             "product_status"=>true,
             "hot_status"=>true,
             "best_seller_status"=>true,
@@ -53,6 +55,7 @@ class ProductsSeeder extends Seeder
             "hot_status"=>false,
             "best_seller_status"=>true,
             "avatar"=>"air-jordan-1-mid-se-craft-shoes.png",
+            'description'=>"Hãy dành thời gian để tỏa sáng ở AJ1 Mid. Cặp đôi này mang đến vẻ đẹp lộng lẫy với logo Swoosh sáng bóng và phiên bản dubraes đặc biệt. Trang trí ở cổ giày ở giữa, logo Wings mang tính biểu tượng được trang trí bằng kim loại, nâng tầm phong cách giày thể thao của bạn với ánh vàng lấp lánh.",
             "type_product_id"=>8,
             "gender_id"=>2],
 
@@ -66,6 +69,7 @@ class ProductsSeeder extends Seeder
             "hot_status"=>true,
             "best_seller_status"=>true,
             "avatar"=>"air-jordan-1-mid-se-craft-shoes-X.png",
+            'description'=>"Hãy dành thời gian để tỏa sáng ở AJ1 Mid. Cặp đôi này mang đến vẻ đẹp lộng lẫy với logo Swoosh sáng bóng và phiên bản dubraes đặc biệt. Trang trí ở cổ giày ở giữa, logo Wings mang tính biểu tượng được trang trí bằng kim loại, nâng tầm phong cách giày thể thao của bạn với ánh vàng lấp lánh.",
             "type_product_id"=>5,
             "gender_id"=>2],
 
@@ -79,6 +83,7 @@ class ProductsSeeder extends Seeder
             "hot_status"=>true,
             "best_seller_status"=>true,
             "avatar"=>"air-jordan-1-mid-se-shoes.png",
+            'description'=>"Hãy dành thời gian để tỏa sáng ở AJ1 Mid. Cặp đôi này mang đến vẻ đẹp lộng lẫy với logo Swoosh sáng bóng và phiên bản dubraes đặc biệt. Trang trí ở cổ giày ở giữa, logo Wings mang tính biểu tượng được trang trí bằng kim loại, nâng tầm phong cách giày thể thao của bạn với ánh vàng lấp lánh.",
             "type_product_id"=>5,
             "gender_id"=>1],
 
@@ -92,6 +97,7 @@ class ProductsSeeder extends Seeder
             "hot_status"=>true,
             "best_seller_status"=>true,
             "avatar"=>"air-jordan-1-mid-se-shoes-X.png",
+            'description'=>"Hãy dành thời gian để tỏa sáng ở AJ1 Mid. Cặp đôi này mang đến vẻ đẹp lộng lẫy với logo Swoosh sáng bóng và phiên bản dubraes đặc biệt. Trang trí ở cổ giày ở giữa, logo Wings mang tính biểu tượng được trang trí bằng kim loại, nâng tầm phong cách giày thể thao của bạn với ánh vàng lấp lánh.",
             "type_product_id"=>5,
             "gender_id"=>2],
             
@@ -105,6 +111,7 @@ class ProductsSeeder extends Seeder
             "hot_status"=>true,
             "best_seller_status"=>true,
             "avatar"=>"revolution-6-road-running-shoes.png",
+            'description'=>"Hãy dành thời gian để tỏa sáng ở AJ1 Mid. Cặp đôi này mang đến vẻ đẹp lộng lẫy với logo Swoosh sáng bóng và phiên bản dubraes đặc biệt. Trang trí ở cổ giày ở giữa, logo Wings mang tính biểu tượng được trang trí bằng kim loại, nâng tầm phong cách giày thể thao của bạn với ánh vàng lấp lánh.",
             "type_product_id"=>5,
             "gender_id"=>2],
 
@@ -118,6 +125,7 @@ class ProductsSeeder extends Seeder
             "hot_status"=>true,
             "best_seller_status"=>true,
             "avatar"=>"dunk-low-retro-shoes-X.png",
+            'description'=>"Hãy dành thời gian để tỏa sáng ở AJ1 Mid. Cặp đôi này mang đến vẻ đẹp lộng lẫy với logo Swoosh sáng bóng và phiên bản dubraes đặc biệt. Trang trí ở cổ giày ở giữa, logo Wings mang tính biểu tượng được trang trí bằng kim loại, nâng tầm phong cách giày thể thao của bạn với ánh vàng lấp lánh.",
             "type_product_id"=>5,
             "gender_id"=>1],
 
@@ -131,6 +139,7 @@ class ProductsSeeder extends Seeder
             "hot_status"=>true,
             "best_seller_status"=>true,
             "avatar"=>"impact-4-basketball-shoes.png",
+            'description'=>"Hãy dành thời gian để tỏa sáng ở AJ1 Mid. Cặp đôi này mang đến vẻ đẹp lộng lẫy với logo Swoosh sáng bóng và phiên bản dubraes đặc biệt. Trang trí ở cổ giày ở giữa, logo Wings mang tính biểu tượng được trang trí bằng kim loại, nâng tầm phong cách giày thể thao của bạn với ánh vàng lấp lánh.",
             "type_product_id"=>5,
             "gender_id"=>1],
 
@@ -144,6 +153,7 @@ class ProductsSeeder extends Seeder
             "hot_status"=>true,
             "best_seller_status"=>true,
             "avatar"=>"impact-4-basketball-shoes-X.png",
+            'description'=>"Hãy dành thời gian để tỏa sáng ở AJ1 Mid. Cặp đôi này mang đến vẻ đẹp lộng lẫy với logo Swoosh sáng bóng và phiên bản dubraes đặc biệt. Trang trí ở cổ giày ở giữa, logo Wings mang tính biểu tượng được trang trí bằng kim loại, nâng tầm phong cách giày thể thao của bạn với ánh vàng lấp lánh.",
             "type_product_id"=>5,
             "gender_id"=>2],
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->double('export_price');
             $table->double('discount')->nullable();
             $table->string('avatar',255)->nullable();
+            $table->string('description',3000)->nullable();
             $table->string('object_id')->nullable();
             $table->boolean('product_status')->nullable();
             $table->boolean('hot_status')->nullable();

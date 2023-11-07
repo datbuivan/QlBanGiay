@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use Carbon\Carbon;
 class OrdersSeeder extends Seeder
 {
     /**
@@ -17,7 +17,6 @@ class OrdersSeeder extends Seeder
         //
         \DB::table("orders")->insert([
             [
-                "order_date"=>"2023-10-10",
                 "full_name"=>"Nguyen The Huong",
                 "pay_method"=>"CASH",
                 "email"=>"huong@gmail.com",
@@ -29,7 +28,8 @@ class OrdersSeeder extends Seeder
                 "status"=>"pending",
                 "customer_id"=>4,
                 "employee_id"=>3,
-                "deliver_id"=>1
+                "deliver_id"=>1,
+                "created_at"=>Carbon::now()->format("Y-m-d H:i:s")
         ],
             
 

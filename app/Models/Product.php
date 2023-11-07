@@ -72,8 +72,8 @@ class Product extends Model
         return $this->belongsTo(Cart::class,'product_id', 'id');
     }
 
-    public function purchases(): BelongsToMany
-    {
-        return $this->belongsToMany(Purchases::class,'purchase_details','product_detail_id','order_id');
-    }
+    // public function purchases(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Purchases::class,'purchase_details','product_detail_id','order_id');
+    // }
 }

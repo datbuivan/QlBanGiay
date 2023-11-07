@@ -6,7 +6,7 @@
     </div>
     <div class="col-md-3">
         <p>
-            <a class="btn btn-primary" href="{{url('QLBanGiay/admin/product/create')}}">Thêm sản phẩm</a>
+            <a class="btn btn-primary" href="{{route('create-product')}}">Thêm sản phẩm</a>
         </p>
     </div>
 </div>
@@ -34,7 +34,7 @@
                 src="../../../QlBanGiay/resources/assets/image/{{$product->avatar}}" alt="">
             </th>
             <th>
-                <a href="{{url('QLBanGiay/admin/product/edit',['id'=>$product->id])}}" class="btn btn-info">Chi tiết</a>
+                <a href="{{route('edit-product',['id'=>$product->id])}}" class="btn btn-info">Chi tiết</a>
                 <a href="" class="btn btn-danger">Xóa</a>
 
             </th>

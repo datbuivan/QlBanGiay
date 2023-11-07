@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Order extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function users(): BelongsTo
     {

@@ -1,22 +1,22 @@
 @extends('Layout.LayoutAdmin')
 @section('body')
-    <form action="" method="POST" role="form" enctype="multipart/form-data">
+    <form action="{{url('QLBanGiay/admin/product/create')}}" method="POST" role="form" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-9 content_left">
                 <div class="form-group">
                     <label for="">Tên sản phẩm</label>
                     <input type="text" class="form-control" name="name" placeholder="Nhập tên sản phẩm">
-                    {{-- @if ($errors->has('name'))
-                        <p class="help is-danger">{{ $errors->first('name') }}</p>
-                    @endif --}}
+                    @if ($errors->has('name'))
+                        <span class="help is-danger">{{ $errors->first('name') }}</span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="">Chi tiết sản phẩm</label>
                     <textarea type="text" class="form-control" name="description" rows="5" placeholder="Nhập chi tiết sản phẩm"></textarea>
-                    {{-- @if ($errors->has('desciption'))
-                        <p class="help is-danger">{{ $errors->first('desciption') }}</p>
-                    @endif --}}
+                    @if ($errors->has('desciption'))
+                        <span class="help is-danger">{{ $errors->first('desciption') }}</span>
+                    @endif
                 </div>
                 <div class="group-product-roperties">
                     <div class="color col-md-3" >
@@ -27,9 +27,9 @@
                             <option value="{{$color->id}}">{{$color->name}}</option>        
                         @endforeach
                         </select>
-                        {{-- @if ($errors->has('color_id'))
-                        <p class="help is-danger">{{ $errors->first('color_id') }}</p>
-                        @endif --}}
+                        @if ($errors->has('color_id'))
+                        <span class="help is-danger">{{ $errors->first('color_id') }}</span>
+                        @endif
                     </div>
                     <div class="typeProduct col-md-3" >
                         <label for="">Loại giày</label>
@@ -39,9 +39,9 @@
                             <option value="{{$typeproduct->id}}">{{$typeproduct->name}}</option>        
                         @endforeach
                         </select>
-                        {{-- @if ($errors->has('type_product_id'))
-                        <p class="help is-danger">{{ $errors->first('type_product_id') }}</p>
-                        @endif --}}
+                        @if ($errors->has('type_product_id'))
+                        <span class="help is-danger">{{ $errors->first('type_product_id') }}</span>
+                        @endif
                     </div>
                     <div class="gender col-md-3" >
                         <label for="">Giới tính</label>
@@ -51,9 +51,9 @@
                             <option value="{{$gender->id}}">{{$gender->name}}</option>        
                         @endforeach
                         </select>
-                        {{-- @if ($errors->has('gender_id'))
-                        <p class="help is-danger">{{ $errors->first('gender_id') }}</p>
-                        @endif --}}
+                        @if ($errors->has('gender_id'))
+                        <span class="help is-danger">{{ $errors->first('gender_id') }}</span>
+                        @endif
                     </div>
                     <div class="design col-md-3" >
                         <label for="">Kiểu dáng</label>
@@ -64,17 +64,17 @@
                         @endforeach
                         </select>
                         {{-- @if ($errors->has('design_id'))
-                        <p class="help is-danger">{{ $errors->first('design_id') }}</p>
+                        <span class="help is-danger">{{ $errors->first('design_id') }}</span>
                         @endif                        --}}
                     </div>
                 </div>
-                <div class="form-group col-md-3 uploadImage" ">
+                <div class="form-group col-md-3 uploadImage">
                     <br>
                     <label for="">Image</label>
-                    <input type="file" class="form-control" name="avatar" >
-                    {{-- @if ($errors->has('avatar'))
-                    <p class="help is-danger">{{ $errors->first('avatar') }}</p>
-                    @endif --}}
+                    <input type="file" class="form-control" placeholder="Chọn ảnh" name="avatar" id="avatar">
+                    @if ($errors->has('avatar'))
+                    <span class="help is-danger">{{ $errors->first('avatar') }}</span>
+                    @endif
                 </div>
                 <div class="form-group ">
                     <br>
@@ -85,33 +85,33 @@
                 <div class="form-group">
                     <label for="">Giá nhập</label>
                     <input type="text" class="form-control" name="import_price">
-                    {{-- @if ($errors->has('import_price'))
-                    <p class="help is-danger">{{ $errors->first('import_price') }}</p>
-                    @endif --}}
+                    @if ($errors->has('import_price'))
+                    <span class="help is-danger">{{ $errors->first('import_price') }}</span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="">Giá bán</label>
                     <input type="text" class="form-control" name="export_price">
-                    {{-- @if ($errors->has('export_price'))
-                    <p class="help is-danger">{{ $errors->first('export_price') }}</p>
-                    @endif --}}
+                    @if ($errors->has('export_price'))
+                    <span class="help is-danger">{{ $errors->first('export_price') }}</span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="">Giảm giá</label>
                     <input type="text" class="form-control" name="discount" >
-                    {{-- @if ($errors->has('discount'))
-                    <p class="help is-danger">{{ $errors->first('discount') }}</p>
-                    @endif --}}
+                    @if ($errors->has('discount'))
+                    <span class="help is-danger">{{ $errors->first('discount') }}</span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="">Trạng thái sản phẩm</label>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="productStatus" value="1" checked>
+                            <input type="radio" name="product_status" value="1" checked>
                             Mở bán
                         </label>
                         <label>
-                            <input type="radio" name="productStatus" value="0" checked>
+                            <input type="radio" name="product_status" value="0" checked>
                             Ngừng bán
                         </label>
                     </div>
@@ -120,11 +120,11 @@
                     <label for="">Sản phẩm hot</label>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="hotStatus" value="1" checked>
+                            <input type="radio" name="hot_status" value="1" checked>
                             Có
                         </label>
                         <label>
-                            <input type="radio" name="hotStatus" value="0" checked>
+                            <input type="radio" name="hot_status" value="0" checked>
                             Không
                         </label>
                     </div>
@@ -133,11 +133,11 @@
                     <label for="">Sản phẩm khuyến mãi</label>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="bestSellerStatus" value="1" checked>
+                            <input type="radio" name="best_seller_status" value="1" checked>
                             Có
                         </label>
                         <label>
-                            <input type="radio" name="bestSellerStatus" value="0" checked>
+                            <input type="radio" name="best_seller_status" value="0" checked>
                             Không
                         </label>
                     </div>

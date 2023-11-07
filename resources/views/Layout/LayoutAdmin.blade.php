@@ -40,6 +40,10 @@
                 right: 0;
                 left: 0;
             } */
+            span.help{
+                color: red;
+                font-size: 11px;
+            }
             </style>
     </head>
 <body id="page-top">
