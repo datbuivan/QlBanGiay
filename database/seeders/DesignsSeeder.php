@@ -22,8 +22,6 @@ class DesignsSeeder extends Seeder
             ["name"=>"Road"],
             ["name"=>"Trail"],
             ["name"=>"Track"]
-
-            
         ]);
 
     }

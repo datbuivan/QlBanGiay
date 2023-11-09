@@ -205,6 +205,24 @@
     .active_status {
         color: #26aa99 !important;
     }
+
+    .pagination {
+        justify-content: center;
+    }
+
+    .page-item:first-child .page-link,
+    .page-item:last-child .page-link {
+        border-radius: 50%;
+    }
+
+    .page-link {
+        border: none;
+        border-radius: 50%;
+        width: 36px;
+        background: #f8f9fc;
+        text-align: center;
+        margin: 0 4px;
+    }
     </style>
 
 </head>

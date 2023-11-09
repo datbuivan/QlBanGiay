@@ -87,15 +87,24 @@
                             <i class="zmdi zmdi-favorite-outline"></i>
                         </a>
                         <ul class="main-menu">
+                            @if($user = Session::get('user'))
                             <li>
-                                <a href="/QLBanGiay/home">Trang chủ</a>
+                                <a href="/QLBanGiay/home">{{$user->name}}</a>
                                 <ul class="sub-menu">
                                     <li style="text-align:left"><a style="color: #555">Thông tin của tôi</a></li>
                                     <li style="text-align:left"><a href="/QLBanGiay/directCard" style="color: #555">Đơn
                                             đặt hàng</a></li>
-                                    <li style="text-align:left"><a style="color: #555">Đăng xuất</a></li>
+                                    <form method='post' action="{{ url('/QLBanGiay/login/logout-admin')}}">
+                                        @csrf
+                                        @method('post')
+                                        <button style="text-align:left"><a style="color: #555">Đăng xuất</a></button>
+                                    </form>
                                 </ul>
                             </li>
+                            @else
+                            <li style="text-align:left"><a href='/QLBanGiay/login/dang-nhap-he-thong'
+                                    style="color: #555">Đăng nhập</a></li>
+                            @endif
                         </ul>
                     </div>
 

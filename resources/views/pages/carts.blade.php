@@ -24,6 +24,7 @@
                 @if($message = Session::get('success'))
 
                 <div class="alert alert-success">
+
                     {{ $message }}
                 </div>
 
@@ -111,12 +112,23 @@
                     </div>
                 </div>
                 @else
-                <p style="
-                    text-align: center;
-                    width: 100%;
-                    font-size: 20px;
-                    color: red;
-                ">Chưa có sản phẩm nào được thêm vào giỏ hàng</p>
+                <div style="display: flex; justify-content: center;">
+                    <div style="text-align: center;">
+                        <img style=" height: 200px; width: 200px;"
+                            src="../../../QlBanGiay/resources/assets/image/imgCart.png" alt="IMG">
+                        <div>
+                            <p style="
+                                text-align: center;
+                                width: 100%;
+                                font-size: 20px;
+                                color: red;
+                                margin-bottom: 12px;
+                            ">Chưa có sản phẩm nào được thêm vào giỏ hàng
+                            </p>
+                        </div>
+                        <a href="/QLBanGiay/home" class="btn btn-danger">Mua ngay</a>
+                    </div>
+                </div>
                 @endif
             </div>
         </div>

@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\StatisticController;
 
 
 Route::prefix('QLBanGiay')->name("QLBanGiay.")->group(function() {
@@ -20,5 +23,29 @@ Route::prefix('QLBanGiay')->name("QLBanGiay.")->group(function() {
     Route::get('/orders', [OrderController::class, "getOrders"])->name('orders');
     Route::get('/directCard', [OrderController::class, "directCard"])->name('directCard');
     Route::post('/addOrders', [OrderController::class, "orders"]);
+
+    // admin
+    Route::get('/admin/statisticAll',[StatisticController::class,'statisticAll'])->name('statisticAll');
+    Route::get('/admin/product',[ProductController::class,'index'])->name('product');
+    Route::get('/admin/product/create',[ProductController::class,'create'])->name('create-product');
+    Route::post('/admin/product/create',[ProductController::class,'store']);
+    Route::get('/admin/product/edit/{id}',[ProductController::class,'edit'])->name('edit-product');
+    Route::post('/admin/product/edit/{id}',[ProductController::class,'update']);
+    Route::get('/admin/product/destroy/{id}',[ProductController::class,'destroy']);
+
+    Route::get('/admin/listOrder',[OrderController::class,'listOrder'])->name('listOrder');
+    Route::get('/admin/listOrderDetail',[OrderController::class,'listOrderDetail'])->name('listOrderDetail');
+    Route::post('/admin/statusOrder/{id}',[OrderController::class,'statusOrder']);
+    Route::get('/admin/statistical',[ProductController::class,'statistical']);
+
+
+    // Login
+    Route::get('/login/dang-nhap-he-thong', [LoginController::class, 'Index'])->name('login');
+    Route::get('/login/khoi-phuc-mat-khau', [LoginController::class, 'ForgetLogin']);
+    Route::get('/login/dat-lai-mat-khau', [LoginController::class, 'ResetPasswordLog']);
+    Route::post('/login/dang-nhap-he-thong-SignIn', [LoginController::class , 'SignIn' ])->middleware('ValidatedLogins');
+    Route::post('/login/khoi-phuc-mat-khau-reset', [LoginController::class , 'ResetPassword' ]);
+    Route::post('/login/doi-mat-khau-reset', [LoginController::class , 'ResetPasswordDB' ])->middleware('ValidatedLogins');
+    Route::post('/login/logout-admin', [LoginController::class , 'Logout' ])->name('logout-admin');
     
 });

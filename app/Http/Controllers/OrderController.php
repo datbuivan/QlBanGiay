@@ -9,22 +9,27 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Deliver;
-
+use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
 {
 
         public function getOrders(Request $request){
-                $total = 0;
-                $listCarts = Cart::where('customer_id', 1)->get();
-                foreach ($listCarts as $listCart){
-                        $total += $listCart->export_price * $listCart->quantity;
+                $user = Session::get('user');
+                if($user){
+                        $total = 0;
+                        $listCarts = Cart::where('customer_id', $user->id)->get();
+                        foreach ($listCarts as $listCart){
+                                $total += $listCart->export_price * $listCart->quantity;
+                        }
+                        $delivers = Deliver::all(); 
+                        return view('pages.orders')
+                        ->with('total', $total)
+                        ->with('delivers', $delivers)
+                        ->with('listCarts', $listCarts);
+                }else{
+                        return redirect()->route('QLBanGiay.login');
                 }
-                $delivers = Deliver::all(); 
-                return view('pages.orders')
-                ->with('total', $total)
-                ->with('delivers', $delivers)
-                ->with('listCarts', $listCarts);
         }
 
 
@@ -97,5 +102,37 @@ class OrderController extends Controller
                 ->with('directCards', $directCards);
         }
 
+
+        public function listOrder(){
+                $proPage=8;
+                $listOders = Order::paginate($proPage);
+                return view('Admin.Order.listOrder')
+                ->with('listOders',$listOders);
+        }
+
+        public function listOrderDetail(){
+                $proPage=5;
+                $listOrderDetails = Order::with([
+                        'delivers',
+                        'orderDetails.product' => function ($query) {
+                                $query->select('id', 'name');
+                        }
+                ])->select('id', 'full_name', 'deliver_id')->paginate($proPage);
+                return view('Admin.Order.listOrderDetail')
+                ->with('listOrderDetails', $listOrderDetails);
+        }
+
+        public function statusOrder($id){
+                $Orders= Order::where('id',$id)->get();
+                if($id){
+                        Order::where('id', $id)->update([
+                                'status' => 'Đã xác nhận',
+                            ]);
+                }else{
+                        abort(404, 'Page not found');
+                }
+
+                return redirect()->route('QLBanGiay.listOrder')->with('success', 'Xác nhận đơn hàng thành công');
+        }
         
 }

@@ -38,7 +38,6 @@ class DatabaseSeeder extends Seeder
             OrdersSeeder::class,
             // OrdersDetailsSeeder::class,
             ProductImagesSeeder::class,
-            DesignsSeeder::class
         ]);
     }
 }

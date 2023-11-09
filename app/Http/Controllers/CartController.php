@@ -9,55 +9,65 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Deliver;
+use Illuminate\Support\Facades\Session;
 
 
 class CartController extends Controller
 {
         public function carts(){
-                $total = 0;
-                $listCarts = Cart::where('customer_id', 1)->get();
-                foreach ($listCarts as $listCart){
-                        $total += $listCart->export_price * $listCart->quantity;
+                $user = Session::get('user');
+                if($user){
+                        $total = 0;
+                        $listCarts = Cart::where('customer_id', $user->id)->get();
+                        foreach ($listCarts as $listCart){
+                                $total += $listCart->export_price * $listCart->quantity;
+                        }
+                        return view('pages.carts')
+                        ->with('total', $total)
+                        ->with('listCarts', $listCarts);
+                }else{
+                        return redirect()->route('QLBanGiay.login');
                 }
-                return view('pages.carts')
-                ->with('total', $total)
-                ->with('listCarts', $listCarts);
         }
         
         //
         public function addToCart(Request $request){
-                $request->validate([
-                        'size' => 'required',
-                ]);
-
-                $customMessages = [
-                        'size.required' => 'Vui lòng chọn kích thước', 
-                ];
-                
-                $checkCartItem = Cart::where('customer_id', 1)
-                ->where('product_id', $request->product_id)
-                ->where('color',$request->color)
-                ->where('size', $request->size)
-                ->first();
-
-                if ($checkCartItem) {
-                $checkCartItem->update([
-                        'quantity' => $checkCartItem->quantity + $request->quantity,
-                ]);
-                } else {
-                        Cart::create([
-                                'name' => $request->nameProduct,
-                                'avatar' => $request->avatar,
-                                'export_price' => $request->export_price,
-                                'quantity' => $request->quantity,
-                                'size'=> $request->size,
-                                'color' => $request->color,
-                                'product_id' => $request->product_id,
-                                'customer_id' => 1
+                $user = Session::get('user');
+                if($user->role_id === 3){
+                        $request->validate([
+                                'size' => 'required',
                         ]);
+        
+                        $customMessages = [
+                                'size.required' => 'Vui lòng chọn kích thước', 
+                        ];
+                        
+                        $checkCartItem = Cart::where('customer_id', $user->id)
+                        ->where('product_id', $request->product_id)
+                        ->where('color',$request->color)
+                        ->where('size', $request->size)
+                        ->first();
+        
+                        if ($checkCartItem) {
+                        $checkCartItem->update([
+                                'quantity' => $checkCartItem->quantity + $request->quantity,
+                        ]);
+                        } else {
+                                Cart::create([
+                                        'name' => $request->nameProduct,
+                                        'avatar' => $request->avatar,
+                                        'export_price' => $request->export_price,
+                                        'quantity' => $request->quantity,
+                                        'size'=> $request->size,
+                                        'color' => $request->color,
+                                        'product_id' => $request->product_id,
+                                        'customer_id' => $user->id,
+                                ]);
+                        }
+                    return redirect()->route('QLBanGiay.cart');
+                }else{
+                        return redirect()->route('QLBanGiay.login');
                 }
-
-            return redirect()->route('QLBanGiay.cart');
         }
 
 

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\Cart;
@@ -12,29 +11,52 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Deliver;
 use App\Models\Review;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Session;
+// use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function products(){
+    public function products(Request $request){
+        $search = $request->input('searchProduct');
+        $proPage=8;
         $getProductTypes = TypeProduct::all();
-        $getAllProduct = Product::with([
-            'productDetails' 
-        ])->get();
+        if($search){
+            $getAllProduct = Product::where('name', 'like', '%'.$search.'%')->paginate($proPage);
+        }else{
+            $getAllProduct = Product::with([
+                'productDetails' 
+            ])->paginate($proPage);
+        }
+
         return view('pages.products')
         ->with('nameProductTypes', $getProductTypes)
+        ->with('search', $search)
         ->with('products', $getAllProduct);
     }
 
-    public function productType($id){
+    public function productType($id,Request $request){
+        $search = $request->input('searchProduct');
         $getProductTypes = TypeProduct::all();
-        $productType = TypeProduct::with([
-            'product' => function ($query) use ($id){
-                $query->where('type_product_id', '=', $id);
-            },
-        ])->find($id);
+
+        if($search){
+            $productType = TypeProduct::with([
+                'product' => function ($query) {
+                    $query->where('name', 'like', '%'.$search.'%');
+                },
+            ])->get();
+        }else{
+            $productType = TypeProduct::with([
+                'product' => function ($query) use ($id){
+                    $query->where('type_product_id', '=', $id);
+                },
+            ])->find($id);
+        }
+
         $nameProductType = TypeProduct::select('name')
             ->where('id', $id)
             ->first();
+
         return view('pages.productTypes')
         ->with('nameProductType', $nameProductType)
         ->with('nameProductTypes', $getProductTypes)
@@ -74,22 +96,17 @@ class HomeController extends Controller
     }
 
     public function reviews($id){
-            // $listReviews = OrderDetail::with([
-            //     'product'=> function ($query) {
-            //         $query->select('id', 'name', );
-            //     }
-            // ])->find($id);
             $listReviews = OrderDetail::with([
                 'product.reviews'
             ])->find($id);
             
-            echo $listReviews;
             return view('pages.review')
             ->with('listReviews', $listReviews);
     }
 
     public function ratingStar(Request $request){
-        $checkReview = Review::where('user_id', 2)
+        $user = Session::get('user');
+        $checkReview = Review::where('user_id', $user->id)
         ->where('product_id', $request->productId)
         ->first();
 
@@ -98,11 +115,11 @@ class HomeController extends Controller
                 'rate' => $request->ratingstar,
                 'product_id' => $request->productId,
                 'comment'=> $request->comment,
-                'user_id' => 2
+                'user_id' => $user->id
             ]);
         }
         else{
-            $reviews = Review::where('user_id', 1)
+            $reviews = Review::where('user_id',  $user->id)
             ->where('product_id', $request->productId)
             ->update([
                 'rate' => $request->ratingstar,
