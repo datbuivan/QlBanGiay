@@ -53,8 +53,7 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="login.html">Danh sách khách hàng</a>
-                <a class="collapse-item" href="register.html">Danh sách nhân viên</a>
+                <a class="collapse-item" href="/QLBanGiay/admin/customer">Danh sách khách hàng</a>
             </div>
         </div>
     </li>

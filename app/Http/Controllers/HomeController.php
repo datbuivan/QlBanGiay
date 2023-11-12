@@ -13,27 +13,27 @@ use App\Models\Deliver;
 use App\Models\Review;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Session;
-// use Illuminate\Support\Facades\Auth;
+use App\Utils\ConvertUTF8Utils;
 
 class HomeController extends Controller
 {
-    public function products(Request $request){
-        $search = $request->input('searchProduct');
-        $proPage=12;
-        $getProductTypes = TypeProduct::all();
-        if($search){
-            $getAllProduct = Product::where('name', 'like', '%'.$search.'%')->paginate($proPage);
-        }else{
-            $getAllProduct = Product::with([
-                'productDetails' 
-            ])->paginate($proPage);
-        }
+    // public function products(Request $request){
+    //     $search = $request->input('searchProduct');
+    //     $proPage=12;
+    //     $getProductTypes = TypeProduct::all();
+    //     if($search){
+    //         $getAllProduct = Product::where('name', 'like', '%'.$search.'%')->paginate($proPage);
+    //     }else{
+    //         $getAllProduct = Product::with([
+    //             'productDetails' 
+    //         ])->paginate($proPage);
+    //     }
 
-        return view('pages.products')
-        ->with('nameProductTypes', $getProductTypes)
-        ->with('search', $search)
-        ->with('products', $getAllProduct);
-    }
+    //     return view('pages.products')
+    //     ->with('nameProductTypes', $getProductTypes)
+    //     ->with('search', $search)
+    //     ->with('products', $getAllProduct);
+    // }
 
     public function productType($id,Request $request){
         $search = $request->input('searchProduct');
@@ -144,4 +144,34 @@ class HomeController extends Controller
     }
   
 
+    public function products(){
+        $getProductTypes = TypeProduct::all();
+        $getAllProduct = Product::all();
+        return view('pages.products')
+        ->with('nameProductTypes', $getProductTypes)
+        ->with('products', $getAllProduct);
+    }
+
+    public function productSearch() {
+        $search = request('search');
+        $getProductTypes = TypeProduct::all();
+        $query = Product::query();
+        
+        if ($search) {
+            $searchWithoutDiacritics = $this->removeDiacritics($search);
+            $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere($this->removeDiacritics('name'), 'like', '%' . $searchWithoutDiacritics . '%')
+                    ->orWhere('export_price', $search);
+        }
+        
+        $products = $query->get();
+        
+        return view('pages.productSearch')
+            ->with('nameProductTypes', $getProductTypes)
+            ->with('products', $products);
+    }
+    private function removeDiacritics($str) {
+        $str = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
+        return preg_replace('/[^a-zA-Z0-9 ]/', '', $str);
+    }
 }

@@ -66,7 +66,7 @@
                 <div class="dropdown-divider"></div>
 
                 <form style="display: flex; justify-content: center;" method='post'
-                    action="{{ url('/QLBanGiay/login/logout-admin')}}">
+                    action="{{ url('/QLBanGiay/admin/logout-admin')}}">
                     @csrf
                     @method('post')
                     <button class="btn btn-info" style="text-align:left">Đăng xuất</button>

@@ -32,27 +32,28 @@ class LoginController extends Controller
 
     public function ResetPasswordLog(Request $request)
     {
-        $id_user = $request->query('id_user');
+        $id_user = $request->query('id');
 
-        $lst = DB::table('tbl_user')->select('UserName', 'Password', 'IdUsers')
-            ->where('IdUsers', $id_user)
+        $lst = DB::table('users')->select('name', 'password', 'id')
+            ->where('id', $id_user)
             ->first();
 
         if ($lst != null) {
-            $UserName = $lst->UserName;
+            $UserName = $lst->name;
 
             return view('Login.ResetPasswordLog', [
-                'id_user' => $id_user,
-                'UserName' => $UserName,
+                'id' => $id_user,
+                'name' => $UserName,
             ]);
         }else{
-            return Redirect::to('/login/dang-nhap-he-thong')->send();
+            return Redirect::to('QLBanGiay/login/dang-nhap-he-thong')->send();
         }
     }
 
     public function ResetPasswordDB(Request $request)
     {
         try {
+
             $request->validate([
                 'Password' => 'required',
             ]);
@@ -61,15 +62,15 @@ class LoginController extends Controller
             $Password = $request->Password;
             $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
 
-            DB::table('tbl_user')->where('IdUsers', $IdUsers)->update([
-                'Password' => $hashedPassword,
+            DB::table('users')->where('id', $IdUsers)->update([
+                'password' => $hashedPassword,
             ]);
-
-            return Redirect::to('dang-nhap-he-thong')->send();
+            
+            return Redirect::to('QLBanGiay/login/dang-nhap-he-thong');
         
         } catch (\Exception $ex) {
             Session::put('message', $ex->getMessage());
-            return Redirect::to('/login/dat-lai-mat-khau?id_user=1');
+            return Redirect::to('QLBanGiay/admin/dat-lai-mat-khau?id_user=1');
         }
     }
 
@@ -82,21 +83,25 @@ class LoginController extends Controller
             ]);
 
             $hashedPassword = $validatedData['Password'];
-            $lst = DB::table('users')->select('id' ,'name', 'password','email','role_id')
+            $lst = DB::table('users')->select('id' ,'name', 'password','email','role_id','status')
                 ->where('email', $validatedData['UserName'])
                 ->first();
                 
-            if ($lst != null) {
-                Session::put(['user' => $lst]);
-                if ( password_verify($hashedPassword, $lst->password)) {
-                    if($lst->role_id === 3){
-                        return Redirect::to('/QLBanGiay/home');
+            if ($lst != null ) {
+                if( $lst->status === 'hoat dong'){
+                    Session::put(['user' => $lst]);
+                    if ( password_verify($hashedPassword, $lst->password)) {
+                        if($lst->role_id === 3 ){
+                            return Redirect::to('/QLBanGiay/home');
+                        }else{
+                            return Redirect::to('/QLBanGiay/admin/statisticAll');
+                        }
+                        
                     }else{
-                        return Redirect::to('/QLBanGiay/admin/statisticAll');
+                        return redirect()->route('QLBanGiay.login')->with('error', 'Mật khẩu không chính xác');
                     }
-                    
                 }else{
-                    return redirect()->route('QLBanGiay.login')->with('error', 'Mật khẩu không chính xác');
+                    return redirect()->route('QLBanGiay.login')->with('error', 'Tài khoản của bạn đã bị khóa');
                 }
             } else {
                 return redirect()->route('QLBanGiay.login')->with('error', 'Tài khoản không chính xác');
@@ -115,7 +120,6 @@ class LoginController extends Controller
             Session::flush();
             return redirect()->route('QLBanGiay.login');
         } catch (\Exception $ex) {
-            // Log hoặc trả về thông báo lỗi
             return response()->json([
                 'status' => false,
                 'error' => $ex->getMessage()
@@ -143,8 +147,8 @@ class LoginController extends Controller
                 $recipientEmail =  $email;
                 $recipientName = 'Khôi phục mật khẩu';
 
-                Mail::to('Admin.Login.EmailFoget', $data, function ($message) use ($recipientEmail, $recipientName) {
-                    $message->from('thuan15902@gmail.com', 'Bán giày');
+                Mail::Send('Login.EmailFoget', $data, function ($message) use ($recipientEmail, $recipientName) {
+                    $message->from('phamquangduc110@gmail.com', 'Website bán giày');
                     $message->to($recipientEmail, $recipientName)
                          ->subject('Khôi phục tài khoản đăng nhập!');
                 });

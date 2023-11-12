@@ -14,7 +14,7 @@
 
         <div class="flex-w flex-sb-m p-b-20">
             <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-                <a href="{{ url('/QLBanGiay/home/') }}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "
+                <a href="{{ url('/QLBanGiay/home') }}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "
                     data-filter="*">
                     Tất cả sản phẩm
                 </a>

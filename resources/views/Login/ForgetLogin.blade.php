@@ -49,6 +49,7 @@ use Illuminate\Support\Facades\Session;
 
                  <form action="{{URL::to('/QLBanGiay/login/khoi-phuc-mat-khau-reset')}}" method="post"
                      class="row row-eq-height lockscreen  mt-3 mb-5" style="max-width: 800px">
+                     @csrf
                      <div class="lock-image col-12 col-sm-6"></div>
                      <div class="login-form col-12 col-sm-6">
                          <div class="form-group mb-3">

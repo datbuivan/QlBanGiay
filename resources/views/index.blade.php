@@ -518,7 +518,8 @@
     </script>
     <!--===============================================================================================-->
     <script src="../../../QlBanGiay/resources/assets/js/main.js"></script>
-
+    <script src="../../../QlBanGiay/resources/assets/js/filter.js"></script>
+    @yield('foot-js')
 </body>
 
 </html>
