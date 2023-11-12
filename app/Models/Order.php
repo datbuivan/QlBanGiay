@@ -12,7 +12,7 @@ class Order extends Model
     use HasFactory;
     public $timestamps = true;
 
-    protected $fillable = ['full_name','pay_method','email','phone_number','address','status','customer_id','employye_id','deliver_id' ];
+    protected $fillable = ['full_name','pay_method','email','phone_number','address','status','customer_id','employye_id','deliver_id', 'created_at'];
 
     public function users(): BelongsTo
     {

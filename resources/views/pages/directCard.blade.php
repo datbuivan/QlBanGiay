@@ -17,6 +17,7 @@
 
 <!-- Shoping Cart -->
 <form class="bg0 p-t-75" enctype="multipart/form-data">
+
     <div class="container">
         <div class="row">
 
@@ -84,7 +85,6 @@
                                         class="btn btn-success">
                                         Đánh giá
                                     </a>
-
                                 </td>
                             </tr>
                             @endforeach
@@ -122,6 +122,22 @@
                                 <div style="min-width: 250px; text-align: right; color: #ee4d2d; font-size: 22px;">
                                     {{number_format($total+ $listOder->delivers->cost , 0, ',', '.') . ' đ'}}
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="flex-w flex-sb-m bor15  p-lr-15-sm flex-row-reverse"
+                            style="{{$listOder->status === 'Đã xác nhận' ? 'display: none' : ''}}">
+                            <div class="flex-w flex-m " style="padding-right: 50px;">
+                                <form method='post' action="{{ url('/QLBanGiay/cancelOrder/' . $listOder->id ) }}"
+                                    style="min-width: 250px; text-align: right; color: #ee4d2d; font-size: 22px;
+                                    padding: 14px 10px;">
+                                    @csrf
+                                    @method('delete')
+                                    <button style="margin: 0 4px; color: #fff; cursor: pointer; "
+                                        class="btn btn-danger">
+                                        Hủy đơn hàng
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

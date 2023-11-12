@@ -17,6 +17,7 @@
                         <th>Địa chỉ</th>
                         <th>Phương thức thanh toán</th>
                         <th style="text-align: center;">Trạng thái</th>
+                        <th style="text-align: center;">In hóa đơn</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,10 +35,19 @@
                                 <button style="min-width: 130px; opacity: 1"
                                     class=" btn {{$listOder->status === 'Chờ xác nhận' ?'btn-danger' : 'btn-success'}}"
                                     {{$listOder->status === 'Chờ xác nhận' ? '' : 'disabled'}}>
-                                    {{$listOder->status === 'Chờ xác nhận' ? 'Xác nhận' :$listOder->status}}
+                                    {{$listOder->status === 'Chờ xác nhận' ? 'Xác nhận' : $listOder->status}}
                                 </button>
                             </form>
                         </td>
+                        <td style="text-align: center;">
+                            <a href="{{ url('/QLBanGiay/printOrder/'.$listOder->id) }}"
+                                style="min-width: 130px; opacity: 1; {{$listOder->status === 'Chờ xác nhận' ?'display: none' : ''}}"
+                                class=" btn btn-info">
+                                <i class="fas fa-download fa-sm text-white-50"></i>
+                                In hóa đơn
+                            </a>
+                        </td>
+
                     </tr>
                     @endforeach
                 </tbody>

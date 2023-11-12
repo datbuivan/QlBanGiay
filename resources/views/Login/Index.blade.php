@@ -53,17 +53,19 @@ use Illuminate\Support\Facades\Session;
                                 placeholder="Mật khẩu">
                         </div>
 
-                        <div class="form-group mb-3">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked="">
-                                <label class="custom-control-label" for="checkbox-signin">Remember me</label>
-                            </div>
-                        </div>
-
                         <div class="form-group mb-0">
-                            <button class="btn btn-primary" type="submit"> Đăng nhập </button>
-                            <div class="mt-2">
-                                <a href="/QLBanGiay/DangKy">Đăng ký </a>
+                            <div class="mt-2" style="margin-bottom: 6px">
+                                <a style="margin-right: 10px" href="/QLBanGiay/DangKy">Đăng ký </a>
+                                <a href="/QLBanGiay/login/khoi-phuc-mat-khau">Quên mật khẩu?</a>
+                            </div>
+
+                            <div>
+                                <button class="btn btn-primary" type="submit"> Đăng nhập </button>
+                                <button class="btn btn-secondary">
+                                    <a style="color: #fff" href="/QLBanGiay/home">
+                                        Trở lại
+                                    </a>
+                                </button>
                             </div>
                         </div>
                         <p class="my-2 text-muted">--- đăng nhập qua ---</p>
@@ -79,7 +81,6 @@ use Illuminate\Support\Facades\Session;
                         <a class="btn btn-social btn-google text-white mb-2">
                             <i class="icon-social-google align-middle"></i>
                         </a>
-                        <div class="mt-2"><a href="/QLBanGiay/login/khoi-phuc-mat-khau">Quên mật khẩu?</a></div>
                     </div>
                 </form>
             </div>

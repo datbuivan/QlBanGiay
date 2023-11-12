@@ -19,7 +19,7 @@ class HomeController extends Controller
 {
     public function products(Request $request){
         $search = $request->input('searchProduct');
-        $proPage=8;
+        $proPage=12;
         $getProductTypes = TypeProduct::all();
         if($search){
             $getAllProduct = Product::where('name', 'like', '%'.$search.'%')->paginate($proPage);
@@ -69,6 +69,7 @@ class HomeController extends Controller
                 'productImages',
                 'productDetails'
             ])->find($id);
+
             if($productDetails){
                 $similarProducts = Product::where('type_product_id', $productDetails->type_product_id)->get();
                 

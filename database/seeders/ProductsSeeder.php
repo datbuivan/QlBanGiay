@@ -26,7 +26,7 @@ class ProductsSeeder extends Seeder
             "hot_status"=>true,
             "best_seller_status"=>true,
             "type_product_id"=>8,
-            "design_id"=>null,
+            "design_id"=>1,
             "gender_id"=>3,],
 
             ["name"=>"Nike Air Force 1 '07",
@@ -39,7 +39,7 @@ class ProductsSeeder extends Seeder
             "hot_status"=>true,
             "best_seller_status"=>true,
             "type_product_id"=>8,
-            "design_id"=>null,
+            "design_id"=>1,
             "gender_id"=>2],
 
 
@@ -97,7 +97,7 @@ class ProductsSeeder extends Seeder
             
             ["name"=>"Air Jordan 1 Zoom CMFT 2",
             "import_price"=>300000,
-            "export_price"=>7500000,
+            "export_price"=>750000,
             "discount"=>0.3,
             "color_id"=>1,
             "design_id"=>1,

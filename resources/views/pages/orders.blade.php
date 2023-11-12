@@ -10,7 +10,7 @@
         </a>
 
         <span class="stext-109 cl4">
-            Giỏ hàng
+            Đặt hàng
         </span>
     </div>
 </div>

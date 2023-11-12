@@ -92,7 +92,7 @@ class LoginController extends Controller
                     if($lst->role_id === 3){
                         return Redirect::to('/QLBanGiay/home');
                     }else{
-                        return Redirect::to('/QLBanGiay/admin/product');
+                        return Redirect::to('/QLBanGiay/admin/statisticAll');
                     }
                     
                 }else{

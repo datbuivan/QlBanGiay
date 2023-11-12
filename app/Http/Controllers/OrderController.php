@@ -10,10 +10,10 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Deliver;
 use Illuminate\Support\Facades\Session;
+use PDF;
 
 class OrderController extends Controller
 {
-
         public function getOrders(Request $request){
                 $user = Session::get('user');
                 if($user){
@@ -21,6 +21,11 @@ class OrderController extends Controller
                         $listCarts = Cart::where('customer_id', $user->id)->get();
                         foreach ($listCarts as $listCart){
                                 $total += $listCart->export_price * $listCart->quantity;
+                        }
+                        Session::put('cartCount' , $listCarts->count());
+                        $cartCount = Session::get('cartCount');
+                        if($cartCount !== $listCarts->count()){
+                                Session::put('cartCount' , $listCarts->count());
                         }
                         $delivers = Deliver::all(); 
                         return view('pages.orders')
@@ -32,8 +37,8 @@ class OrderController extends Controller
                 }
         }
 
-
         public function orders(Request $request){
+                $user = Session::get('user');
                 $request->validate([
                         'CustomerName' => 'required',
                         'ThanhToan' => 'required',
@@ -59,7 +64,7 @@ class OrderController extends Controller
                         'phone_number' => $request->Phone,
                         'address'=> $request->Address,
                         'status' => 'Chờ xác nhận',
-                        'customer_id' => 1,
+                        'customer_id' => $user->id,
                         'deliver_id'=> $request->deliver
                 ]);
 
@@ -92,17 +97,48 @@ class OrderController extends Controller
         }
 
         public function directCard(){
-             $directCards = Order::with([
-                'delivers',
-                'orderDetails.product' => function ($query) {
-                        $query->select('id', 'name', );
-                }])->where('customer_id',1)->get();
+                $user = Session::get('user');
+                if($user){
+                        $directCards = Order::with([
+                                'delivers',
+                                'orderDetails.product' => function ($query) {
+                                        $query->select('id', 'name', );
+                        }])->where('customer_id',$user->id)->get();
+        
+                        return view('pages.directCard')
+                        ->with('directCards', $directCards);
+                }else{
+                        return redirect()->route('QLBanGiay.login');
+                }
 
-                return view('pages.directCard')
-                ->with('directCards', $directCards);
         }
 
+        public function cancelOrder($id){
+                $user = Session::get('user');
+                if($user){
+                        $cancelOrderDetail = OrderDetail::where('order_id', $id)->delete();
+                        $cancelOrder = Order::where('id', $id)->delete();
+                        return redirect()->route('QLBanGiay.directCard')->with('success', 'Hủy đơn hàng thành công');
+                }else{
+                        return redirect()->route('QLBanGiay.login');
+                }
+        }
 
+        public function printOrder($id){
+                $listBill = Order::with([
+                        'delivers',
+                        'orderDetails.product' => function ($query) {
+                                $query->select('id', 'name');
+                        }
+                ])->select('id', 'full_name', 'deliver_id','pay_method', 'address')->find($id);
+            
+               
+                $pdf = PDF::loadView('Admin.Order.viewBill', compact('listBill'));
+                return $pdf->download('hoadon.pdf');
+                // return view('Admin.Order.viewBill')->with('listBill', $listBill);
+        }
+
+        // bên admin
         public function listOrder(){
                 $proPage=8;
                 $listOders = Order::paginate($proPage);
@@ -111,7 +147,7 @@ class OrderController extends Controller
         }
 
         public function listOrderDetail(){
-                $proPage=5;
+                $proPage=3;
                 $listOrderDetails = Order::with([
                         'delivers',
                         'orderDetails.product' => function ($query) {
@@ -127,7 +163,7 @@ class OrderController extends Controller
                 if($id){
                         Order::where('id', $id)->update([
                                 'status' => 'Đã xác nhận',
-                            ]);
+                        ]);
                 }else{
                         abort(404, 'Page not found');
                 }

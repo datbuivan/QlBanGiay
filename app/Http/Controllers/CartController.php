@@ -22,6 +22,11 @@ class CartController extends Controller
                         foreach ($listCarts as $listCart){
                                 $total += $listCart->export_price * $listCart->quantity;
                         }
+                        Session::put('cartCount' , $listCarts->count());
+                        $cartCount = Session::get('cartCount');
+                        if($cartCount !== $listCarts->count()){
+                                Session::put('cartCount' , $listCarts->count());
+                        }
                         return view('pages.carts')
                         ->with('total', $total)
                         ->with('listCarts', $listCarts);
@@ -29,11 +34,12 @@ class CartController extends Controller
                         return redirect()->route('QLBanGiay.login');
                 }
         }
-        
+
+
         //
         public function addToCart(Request $request){
                 $user = Session::get('user');
-                if($user->role_id === 3){
+                if($user && $user->role_id === 3){
                         $request->validate([
                                 'size' => 'required',
                         ]);
@@ -66,17 +72,18 @@ class CartController extends Controller
                         }
                     return redirect()->route('QLBanGiay.cart');
                 }else{
-                        return redirect()->route('QLBanGiay.login');
+                    return redirect()->route('QLBanGiay.login');
                 }
         }
 
+
+
+      
 
         public function deleteCart($id) {
                 $deleteCart =  Cart::where('id', $id)->delete();
                 return redirect('/QLBanGiay/cart')->with('success', 'Xóa sản phẩm thành công');
         }
-
-
 
         
 }
