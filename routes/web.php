@@ -57,7 +57,7 @@ Route::prefix('QLBanGiay')->name("QLBanGiay.")->group(function() {
     Route::post('/login/dang-nhap-he-thong-SignIn', [LoginController::class , 'SignIn' ])->middleware('ValidatedLogins');
     Route::post('/login/khoi-phuc-mat-khau-reset', [LoginController::class , 'ResetPassword' ]);
     Route::post('/admin/doi-mat-khau-reset', [LoginController::class , 'ResetPasswordDB' ])->middleware('ValidatedLogins');
-    Route::post('/admin/logout-admin', [LoginController::class , 'Logout' ])->name('logout-admin');
+    Route::post('/login/logout-admin', [LoginController::class , 'Logout' ])->name('logout-admin');
 
     // api
     Route::get('/api/v1/product-filter', [ProductFilterApi::class, "productFilter"]);

@@ -10,16 +10,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Đặt lại mật khẩu</title>
-    <link rel="shortcut icon" href="./../../QlBanGiay/resources/assets/distimages/favicon.ico" />
+    <link rel="shortcut icon" href="./../../QlBanGiay/public/Login/images/favicon.ico" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="./../../QlBanGiay/resources/assets/distvendors/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./../../QlBanGiay/resources/assets/distvendors/jquery-ui/jquery-ui.min.css">
-    <link rel="stylesheet" href="./../../QlBanGiay/resources/assets/distvendors/jquery-ui/jquery-ui.theme.min.css">
-    <link rel="stylesheet"
-        href="./../../QlBanGiay/resources/assets/distvendors/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="./../../QlBanGiay/resources/assets/distvendors/flags-icon/css/flag-icon.min.css">
-    <link rel="stylesheet" href="./../../QlBanGiay/resources/assets/distvendors/social-button/bootstrap-social.css" />
-    <link rel="stylesheet" href="./../../QlBanGiay/resources/assets/distcss/main.css">
+    <link rel="stylesheet" href="./../../QlBanGiay/public/Login/vendors/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./../../QlBanGiay/public/Login/vendors/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="./../../QlBanGiay/public/Login/vendors/jquery-ui/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="./../../QlBanGiay/public/Login/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="./../../QlBanGiay/public/Login/vendors/flags-icon/css/flag-icon.min.css">
+    <link rel="stylesheet" href="./../../QlBanGiay/public/Login/vendors/social-button/bootstrap-social.css" />
+    <link rel="stylesheet" href="./../../QlBanGiay/public/Login/css/main.css">
+
 </head>
 <!-- END Head-->
 
@@ -88,11 +88,11 @@
     <!-- END: Content-->
 
     <!-- START: Template JS-->
-    <script src="./../../QlBanGiay/resources/assets/distvendors/jquery/jquery-3.3.1.min.js"></script>
-    <script src="./../../QlBanGiay/resources/assets/distvendors/jquery-ui/jquery-ui.min.js"></script>
-    <script src="./../../QlBanGiay/resources/assets/distvendors/moment/moment.js"></script>
-    <script src="./../../QlBanGiay/resources/assets/distvendors/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="./../../QlBanGiay/resources/assets/distvendors/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="./../../QlBanGiay/public/Login/vendors/jquery/jquery-3.3.1.min.js"></script>
+    <script src="./../../QlBanGiay/public/Login/vendors/jquery-ui/jquery-ui.min.js"></script>
+    <script src="./../../QlBanGiay/public/Login/vendors/moment/moment.js"></script>
+    <script src="./../../QlBanGiay/public/Login/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./../../QlBanGiay/public/Login/vendors/slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- END: Template JS-->
     <script>
