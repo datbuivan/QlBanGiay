@@ -22,6 +22,7 @@ Route::prefix('QLBanGiay')->name("QLBanGiay.")->group(function() {
     Route::get('/cart', [CartController::class, "carts"])->name('cart');
     Route::post('/addCart', [CartController::class, 'addToCart']);
     Route::delete('/{id}/deleteCart', [CartController::class, 'deleteCart']);
+    Route::post('/updateCart', [CartController::class, 'updateCart']);
 
     Route::get('/orders', [OrderController::class, "getOrders"])->name('orders');
     Route::get('/directCard', [OrderController::class, "directCard"])->name('directCard');

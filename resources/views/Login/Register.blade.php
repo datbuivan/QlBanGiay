@@ -86,6 +86,9 @@ use Illuminate\Support\Facades\Session;
 
                         <div class="form-group mb-0 text-center">
                             <button class="btn btn-primary " type="submit"> Đăng Ký </button>
+                            <a class="btn btn-secondary" style="color: #fff" href="/QLBanGiay/login/dang-nhap-he-thong">
+                                Trở lại
+                            </a>
                         </div>
                     </div>
                 </form>

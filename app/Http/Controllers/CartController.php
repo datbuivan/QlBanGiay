@@ -77,6 +77,42 @@ class CartController extends Controller
         }
 
 
+        public function updateCart(Request $request){
+                $user = Session::get('user');
+                dd($request);
+                
+                if (!$user || $user->role_id !== 3) {
+                    return redirect()->route('QLBanGiay.login');
+                }
+                
+                $ids = $request->input('id');
+                $quantities = $request->input('quantity');
+                
+                $isValid = true;
+                
+                if (count($ids) !== count($quantities)) {
+                    $isValid = false;
+                } else {
+                    foreach ($ids as $id) {
+                        $item = Cart::find($id);
+                        if (!$item) {
+                            $isValid = false;
+                            break; 
+                        }
+                    }
+                }
+                
+                if ($isValid) {
+                    foreach ($ids as $index => $id) {
+                        $item = Cart::find($id);
+                        $item->quantity = $quantities[$index];
+                        $item->save();
+                    }
+                    return redirect()->route('QLBanGiay.cart');
+                } else {
+                    return redirect()->route('QLBanGiay.cart');
+                }
+        }
 
       
 

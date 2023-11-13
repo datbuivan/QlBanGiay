@@ -41,7 +41,7 @@
                                 <th style="text-align: center;" class="column-5">Tổng tiền</th>
                                 <th class="column-4"></th>
                             </tr>
-                            @foreach($listCarts as $listCart)
+                            @foreach($listCarts as $index => $listCart)
                             <tr class="table_row">
                                 <td class="column-1">
                                     <div style=" width: 70px;" class="how-itemcart1">
@@ -70,7 +70,7 @@
                                         </div>
 
                                         <input class="mtext-104 cl3 txt-center num-product" type="number"
-                                            name="num-product1" value="{{$listCart->quantity}}">
+                                            name="num-product-{{$listCart->id}}" value="{{$listCart->quantity}}">
 
                                         <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                             <i class="fs-16 zmdi zmdi-plus"></i>
@@ -80,13 +80,28 @@
                                 <td style="text-align: center;" class="column-5">
                                     {{number_format($listCart->export_price*$listCart->quantity , 0, ',', '.') . ' đ'}}
                                 </td>
-                                <td class="column-4 close-td">
-                                    <form method='post' action="{{ url('/QLBanGiay/'.$listCart->id.'/deleteCart') }}">
+                                <td class="column-4 close-td" data-id="{{$listCart->id}}">
+                                    @if($index === 0)
+                                    <form method='POST' class="d-none" style="display:none;"
+                                        action="{{ url('/QLBanGiay/'.$listCart->id.'/deleteCart') }}">
                                         @csrf
-                                        @method('delete')
-                                        <button class="close-icon ">Xóa</button>
+                                        @method('DELETE')
+                                        <button type="submit" style="display:none;" class="close-icon">Xóa</button>
                                     </form>
+                                    <form method='POST' action="{{ url('/QLBanGiay/'.$listCart->id.'/deleteCart') }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="close-icon">Xóa</button>
+                                    </form>
+                                    @else
+                                    <form method='POST' action="{{ url('/QLBanGiay/'.$listCart->id.'/deleteCart') }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="close-icon">Xóa</button>
+                                    </form>
+                                    @endif
                                 </td>
+
                             </tr>
                             @endforeach
                         </table>
@@ -135,5 +150,42 @@
     </div>
 </form>
 
+
+<script>
+function submitCartForm() {
+    var formDataArray = [];
+    var inputElements = document.querySelectorAll('input[name^="num-product-"]');
+    inputElements.forEach(function(inputElement) {
+        var id = inputElement.name.split('-')[2]; // Extract the id from the name
+        var quantity = inputElement.value;
+        formDataArray.push({
+            id: id,
+            quantity: quantity
+        });
+    });
+
+
+    var jsonData = JSON.stringify(formDataArray);
+
+    var url = window.location.origin + "/QLBanGiay/updateCart";
+    const csrfToken = "{{ csrf_token() }}";
+    fetch(url, {
+            method: 'POST',
+            body: jsonData,
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+            }
+        })
+        .then(function(response) {
+            console.log(response);
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+}
+
+document.getElementById('update-cart').addEventListener('click', submitCartForm);
+</script>
 
 @endsection

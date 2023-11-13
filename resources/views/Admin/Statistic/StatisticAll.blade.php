@@ -102,9 +102,9 @@
                             <option style="display: none" value="">Chọn phương thức thống kê
                             </option>
                             <option value="thống kê tất cả sản phẩm">Thống kê tất cả sản phẩm</option>
-                            <option value="thống kê theo ngày">Thống kê theo ngày</option>
+                            <option value="thống kê theo ngày">Thống kê sản phẩm theo ngày</option>
                             <option value="thống kê loại sản phẩm theo ngày">Thống kê loại sản phẩm theo ngày</option>
-                            <option value="thống kê sản phẩm bán chạy theo tháng">Thống kê sản phẩm bán chạy theo tháng
+                            <option value="thống kê sản phẩm bán chạy theo tháng">Thống kê sản phẩm bán chạy trong tháng
                             </option>
                         </select>
                         <button disabled id="btnStatistic" class="btn btn-primary">

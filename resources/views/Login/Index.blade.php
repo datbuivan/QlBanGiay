@@ -61,11 +61,9 @@ use Illuminate\Support\Facades\Session;
 
                             <div>
                                 <button class="btn btn-primary" type="submit"> Đăng nhập </button>
-                                <button class="btn btn-secondary">
-                                    <a style="color: #fff" href="/QLBanGiay/home">
-                                        Trở lại
-                                    </a>
-                                </button>
+                                <a class="btn btn-secondary" style="color: #fff" href="/QLBanGiay/home">
+                                    Trở lại
+                                </a>
                             </div>
                         </div>
                         <p class="my-2 text-muted">--- đăng nhập qua ---</p>
