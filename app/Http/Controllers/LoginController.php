@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\PasswordResetMail;
 use App\Models\User;
 use \App\Http\Middleware\ValidatedLogin;
+use App\Http\Requests\RegisterRequest;
 
 Session::start();
 
@@ -165,6 +166,31 @@ class LoginController extends Controller
             ]);
         }
     }
+
+    public function Register(){
+        return view('Login.Register');
+    }
+
+    public function RegisterPost(RegisterRequest $request){
+        $user = User::where('email',$request->email)->first();
+        if(!$user){
+            $newUser = User::create([
+                'name' => $request->name,
+                'email'=> $request->email,
+                'password' => \Hash::make($request->password),
+                'phone_number'=> $request->phone,
+                'status'=> 'hoat dong',
+                'role_id' => 3
+            ]);
+            return Redirect::to('dang-nhap-he-thong')->send();
+        }    
+        
+        else{
+            return 'errors';
+        }
+        
+    }
+
     public function createUser(){
         return view('pages.DangKy');
     }

@@ -95,7 +95,7 @@
     <script src="./../../QlBanGiay/public/Login/vendors/slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- END: Template JS-->
-    <script>
+    <!-- <script>
     var myController = {
         init: function() {
             $("#btn_thaydoi").prop('disabled', true);
@@ -119,7 +119,7 @@
 
     };
     myController.init();
-    </script>
+    </script> -->
 </body>
 <!-- END: Body-->
 

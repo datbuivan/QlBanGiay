@@ -36,51 +36,57 @@ use Illuminate\Support\Facades\Session;
                 </div>
 
                 @endif
-                <form action="{{ URL::to('/QLBanGiay/login/dang-nhap-he-thong-SignIn') }}" method="post"
+                <form action="{{url('QLBanGiay/login/register')}}" method="POST"
                     class="row row-eq-height lockscreen  mt-3 mb-5">
                     @csrf
                     <div class="lock-image col-12 col-sm-6"></div>
                     <div class="login-form col-12 col-sm-6">
                         <div class="form-group mb-3">
-                            <label for="TaiKhoan">Tài khoản</label>
-                            <input class="form-control" type="text" id="UserName" name="UserName"
-                                placeholder="Nhập tài khoản">
+                            <label for="TaiKhoan">Tên đăng nhập</label>
+                            <input class="form-control" type="text" id="name" name="name"
+                                placeholder="Nhập tên đăng nhâp">
+                            @if ($errors->has('name'))
+                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="TaiKhoan">Email</label>
+                            <input class="form-control" type="text" id="email" name="email" placeholder="Nhập email">
+                            @if ($errors->has('email'))
+                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                            @endif
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="password">Mật khẩu</label>
-                            <input class="form-control" type="password" id="Password" name="Password"
+                            <input class="form-control" type="password" id="password" name="password"
                                 placeholder="Mật khẩu">
+                            @if ($errors->has('password'))
+                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                            @endif
                         </div>
 
-                        <div class="form-group mb-0">
-                            <div class="mt-2" style="margin-bottom: 6px">
-                                <a style="margin-right: 10px" href="/QLBanGiay/login/register">Đăng ký </a>
-                                <a href="/QLBanGiay/login/khoi-phuc-mat-khau">Quên mật khẩu?</a>
-                            </div>
-
-                            <div>
-                                <button class="btn btn-primary" type="submit"> Đăng nhập </button>
-                                <button class="btn btn-secondary">
-                                    <a style="color: #fff" href="/QLBanGiay/home">
-                                        Trở lại
-                                    </a>
-                                </button>
-                            </div>
+                        <div class="form-group mb-3">
+                            <label for="password">Nhập lại mật khẩu</label>
+                            <input class="form-control" type="password" id="password_confirmation"
+                                name="password_confirmation" placeholder="Mật khẩu">
+                            @if ($errors->has('password_confirmation'))
+                            <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                            @endif
                         </div>
-                        <p class="my-2 text-muted">--- đăng nhập qua ---</p>
-                        <a class="btn btn-social btn-dropbox text-white mb-2">
-                            <i class="icon-social-dropbox align-middle"></i>
-                        </a>
-                        <a class="btn btn-social btn-facebook text-white mb-2">
-                            <i class="icon-social-facebook align-middle"></i>
-                        </a>
-                        <a class="btn btn-social btn-github text-white mb-2">
-                            <i class="icon-social-github align-middle"></i>
-                        </a>
-                        <a class="btn btn-social btn-google text-white mb-2">
-                            <i class="icon-social-google align-middle"></i>
-                        </a>
+
+                        <div class="form-group mb-3">
+                            <label for="password">Nhập số điện thoại</label>
+                            <input class="form-control" name="phone" placeholder="Số điện thoại">
+                            @if ($errors->has('password_confirmation'))
+                            <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="form-group mb-0 text-center">
+                            <button class="btn btn-primary " type="submit"> Đăng Ký </button>
+                        </div>
                     </div>
                 </form>
             </div>
