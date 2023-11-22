@@ -117,7 +117,6 @@ class ProductController extends Controller
         if($product == null){
             abort(404, 'Page not found');
         }
-        dd($product);
         //return view('Admin.Product.delete',compact('product'));
     } 
 }

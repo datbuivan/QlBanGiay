@@ -43,7 +43,7 @@ class RegisterRequest extends FormRequest
             'password.confirmed'=>'Mật khẩu không trùng khớp',
             'password_confirmation.required' => 'Vui lòng nhập lại mật khẩu', 
             'password_confirmation.min' => 'Mật khẩu phải có ít nhất 6 kí tự', 
-            'phone.required' => 'Tên không được để trống ', 
+            'phone.required' => 'Số điện thoại không được để trống ', 
         ];
     }
 }

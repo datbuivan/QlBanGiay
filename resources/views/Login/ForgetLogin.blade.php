@@ -56,7 +56,6 @@ use Illuminate\Support\Facades\Session;
                              <label class="form-label">Bạn muốn khôi phục tài khoản qua:</label>
                              <select name="cbKhoiPhuc" id="cbKhoiPhuc" class="form-control form-control-sm radius-30">
                                  <option value="Khôi phục qua email">Khôi phục qua email</option>
-                                 <option value="Khôi phục qua mã pin">Khôi phục qua mã pin</option>
                                  <option value="Khôi phục qua câu hỏi">Khôi phục qua câu hỏi</option>
                              </select>
                          </div>
@@ -89,10 +88,9 @@ use Illuminate\Support\Facades\Session;
                          </div>
                          <div class="alert alert-success alert-dismissible fade show" role="alert">
                              <strong>
-                                 <li>Nhập tên Tài khoản và Mã Pin</li>
-                                 <li>Nhập tên Tài khoản và Trả lời câu hỏi </li>
                                  <li>Khôi phục qua email</li>
-                                 <li>Liên hệ quản trị viên | hotline: 0332581817 </li>
+                                 <li>Nhập tên Tài khoản và Trả lời câu hỏi </li>
+                                 <li>Liên hệ quản trị viên | hotline: 0965420922 </li>
                              </strong>
                          </div>
                          <div class="mt-2"><a href="/QLBanGiay/login/dang-nhap-he-thong">(Đăng nhập hệ thống)</a></div>

@@ -115,7 +115,7 @@
                                     Đặt hàng
                                 </a>
                             </div>
-                            <div style="margin: 0 4px;"
+                            <div id="update-cart" style="margin: 0 4px;"
                                 class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
                                 Cập nhật giỏ hàng
                             </div>
@@ -153,39 +153,47 @@
 
 <script>
 function submitCartForm() {
-    var formDataArray = [];
+    // Create a new FormData object
+    var formData = new FormData();
+
+    // Add key-value pairs to the FormData object
     var inputElements = document.querySelectorAll('input[name^="num-product-"]');
     inputElements.forEach(function(inputElement) {
-        var id = inputElement.name.split('-')[2]; // Extract the id from the name
+        var id = inputElement.name.split('-')[2];
         var quantity = inputElement.value;
-        formDataArray.push({
-            id: id,
-            quantity: quantity
-        });
+        formData.append('id[]', id);
+        formData.append('quantity[]', quantity);
     });
-
-
-    var jsonData = JSON.stringify(formDataArray);
 
     var url = window.location.origin + "/QLBanGiay/updateCart";
     const csrfToken = "{{ csrf_token() }}";
+
     fetch(url, {
             method: 'POST',
-            body: jsonData,
+            body: formData,
             headers: {
-                'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': csrfToken
             }
         })
         .then(function(response) {
-            console.log(response);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+            window.location.reload();
+        })
+        .then(function(data) {
+            console.log(data);
+            window.location.reload();
         })
         .catch(function(error) {
-            console.log(error);
+            console.log('Fetch error:', error);
+            window.location.reload();
         });
 }
 
 document.getElementById('update-cart').addEventListener('click', submitCartForm);
 </script>
+
 
 @endsection

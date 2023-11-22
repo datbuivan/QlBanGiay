@@ -12,7 +12,7 @@
                 <thead>
                     <tr>
                         <th>Tên khách hàng</th>
-                        <th>Email</th>
+                        <th>Mã đơn hàng</th>
                         <th>Số điện thoại</th>
                         <th>Địa chỉ</th>
                         <th>Phương thức thanh toán</th>
@@ -24,7 +24,7 @@
                     @foreach($listOders as $listOder)
                     <tr>
                         <td>{{$listOder->full_name}}</td>
-                        <td>{{$listOder->email}}</td>
+                        <td>MĐH{{$listOder->id}}</td>
                         <td>{{$listOder->phone_number}}</td>
                         <td>{{$listOder->address}}</td>
                         <td>{{$listOder->pay_method}}</td>

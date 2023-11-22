@@ -77,12 +77,11 @@ class CartController extends Controller
         }
 
 
-        public function updateCart(Request $request){
+        public function updateCart(Request $request) {
                 $user = Session::get('user');
-                dd($request);
                 
                 if (!$user || $user->role_id !== 3) {
-                    return redirect()->route('QLBanGiay.login');
+                return response()->json(['message' => 'Unauthorized'], 401);
                 }
                 
                 $ids = $request->input('id');
@@ -91,29 +90,28 @@ class CartController extends Controller
                 $isValid = true;
                 
                 if (count($ids) !== count($quantities)) {
-                    $isValid = false;
+                        $isValid = false;
                 } else {
-                    foreach ($ids as $id) {
-                        $item = Cart::find($id);
-                        if (!$item) {
-                            $isValid = false;
-                            break; 
+                        foreach ($ids as $id) {
+                                $item = Cart::find($id);
+                                if (!$item) {
+                                        $isValid = false;
+                                        break;
+                                }
                         }
-                    }
                 }
                 
                 if ($isValid) {
-                    foreach ($ids as $index => $id) {
-                        $item = Cart::find($id);
-                        $item->quantity = $quantities[$index];
-                        $item->save();
-                    }
-                    return redirect()->route('QLBanGiay.cart');
+                        foreach ($ids as $index => $id) {
+                                $item = Cart::find($id);
+                                $item->quantity = $quantities[$index];
+                                $item->save();
+                        }
+                        return response()->json(['message' => 'Cart updated successfully']);
                 } else {
-                    return redirect()->route('QLBanGiay.cart');
+                        return response()->json(['message' => 'Invalid data'], 400);
                 }
         }
-
       
 
         public function deleteCart($id) {

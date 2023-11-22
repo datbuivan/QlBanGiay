@@ -182,7 +182,7 @@ class LoginController extends Controller
                 'status'=> 'hoat dong',
                 'role_id' => 3
             ]);
-            return Redirect::to('dang-nhap-he-thong')->send();
+            return Redirect::to('/QLBanGiay/login/dang-nhap-he-thong')->send();
         }    
         
         else{
